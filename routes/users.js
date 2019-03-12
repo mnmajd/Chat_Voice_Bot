@@ -5,8 +5,8 @@ var User = require('../models/UserSchema')
 var authenticate = require('../config/Authenticate');
 
 router.post('/signup', (req, res, next) => {
-    User.register(new User({username: req.body.username ,
-
+    User.register(new User({
+            username: req.body.username ,
             FirstName: req.body.FirstName,
             LastName  : req.body.LastName,
             Email :req.body.Email,

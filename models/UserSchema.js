@@ -4,7 +4,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var UserSchema = new mongoose.Schema
 (
     {
-            FirstName : { type : String , required : true},
+            /*FirstName : { type : String , required : true},
             LastName  : { type : String , required: true},
             Email     : { type : String , required : true},
             Adress    : [
@@ -21,7 +21,7 @@ var UserSchema = new mongoose.Schema
             ],
 
            /* Phone    : { type : Number , required : true},*/
-            Is_Admin : { type : Boolean , required : false , default: false}
+           /* Is_Admin : { type : Boolean , required : false , default: false}*/
 
     }
 )

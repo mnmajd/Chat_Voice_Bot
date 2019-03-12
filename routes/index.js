@@ -6,7 +6,14 @@ var authenticate = require('../config/Authenticate');
 router.get('/', function(req, res, next) {
   res.send('welcome to chatbot_voice bot');
 });
-router.get('/test',function(req, res, next) {
-    res.send('welcome to chatbot_voice bot');
+
+const { Language } = require('node-nlp');
+
+const language = new Language();
+const guess = language.guess(
+    'je parle',
+);
+router.get('/guesslanguage',function(req, res, next) {
+    console.log(guess[0]);
 });
 module.exports = router;
