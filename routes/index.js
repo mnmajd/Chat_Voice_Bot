@@ -33,8 +33,29 @@ const startClassify = async function(a, b) {
     console.log(classifications);
     console.log(classification);
 }
-router.get('/guesslanguage2',function(req, res, next) {
+router.get('/classify',function(req, res, next) {
     startClassify();
 
 });
+const { SentimentAnalyzer,SentimentManager } = require('node-nlp');
+router.get('/sentimental',function(req, res, next) {
+    const sentiment = new SentimentManager();
+    sentiment
+        .process('en', 'I hate cats')
+        .then(result => console.log(result.score));
+    sentiment
+        .process('fr', 'cats are stupid')
+        .then(result => console.log(result));
+// { score: 0.313,
+//   numWords: 3,
+//   numHits: 1,
+//   comparative: 0.10433333333333333,
+//   type: 'senticon',
+//   language: 'en' }
+
+    sentiment
+        .process('es', 'Los gatitos son amor')
+        .then(result => console.log(result));
+});
+
 module.exports = router;
