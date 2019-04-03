@@ -8,7 +8,7 @@ const nexmo = new Nexmo({
 });
 const from = '21624390420';
 const to = '21624390420';
-const text = 'Your claim has been sent to admin';
+const text = 'Your claim has been successful sent to admin';
 
 exports.sendClaim=(req,res,next)=>{
     const newclaim={
