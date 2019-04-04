@@ -7,6 +7,7 @@ var ClaimSchema = new mongoose.Schema(
         Type : {type : String},
         Degre : {type : String },
         Date : {type : Date , default:Date.now()},
+        State : {type : String , default:'Not treated'},
         Treated : {type : Boolean , default: 'false'},
         User: {type: mongoose.Schema.ObjectId,  required: true,index: true , ref: 'User'}
     }
