@@ -44,9 +44,15 @@ console.log(JSON.stringify(req.body));
             ])
         }
     );
-  
-         
-   }
+    res.json(
+        {
+            'fulfillmentText': JSON.stringify([
+                {res:"register"},
+                {res:"response 2"}
+            ])
+        }
+    );
+    }
 
   });
 

@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var offersRouter = require('./routes/offers');
 var claimsRouter = require('./routes/claims');
+var servicesRouter = require('./routes/services');
 var chatRouter = require('./routes/chat');
 
 
@@ -43,6 +44,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/offers', offersRouter);
 app.use('/claims', claimsRouter);
+app.use('/services', servicesRouter);
 app.use('/chat', chatRouter);
 
 socket.conn();
