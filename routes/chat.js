@@ -39,15 +39,90 @@ if(req.body.queryResult.action=="input.welcome"){
     res.json(
         {
             'fulfillmentText': JSON.stringify([
+                {res:"Need assistance"},
                 {res:"Register"},
+                {res:"Login"},
                 {res:"Continue as guest"}
             ])
         }
     );
     
     }
+    if(req.body.queryResult.action=="need.assistance"){
+  
+        res.json(
+            {
+                'fulfillmentText': JSON.stringify([
+                    {res:"Offers"},
+                    {res:"Services"},
+                    {res:"Support"},
+                    {res:"Claims"}
+                ])
+            }
+        );
+        
+        }
+
+        if(req.body.queryResult.action=="services.global"){
+  
+            res.json(
+                {
+                    'fulfillmentText': JSON.stringify([
+                        {res:"Charge Unit"},
+                        {res:"Services Codes"},
+                        {res:"Go back to assistance"}
+                    ])
+                }
+            );
+            
+            }
+
+            if(req.body.queryResult.action=="offers.global"){
+  
+                res.json(
+                    {
+                        'fulfillmentText': JSON.stringify([
+                            {res:"Particular Offers"},
+                            {res:"Entreprise Offers"},
+                            {res:"Go back to assistance"}
+                        ])
+                    }
+                );
+                
+                }
+
+                if(req.body.queryResult.action=="support.global"){
+  
+                    res.json(
+                        {
+                            'fulfillmentText': JSON.stringify([
+                                {res:"Internet Problem"},
+                                {res:"Communication Problem"},
+                                {res:"Other Problem"},
+                                {res:"Go back to assistance"}
+                            ])
+                        }
+                    );
+                    
+                    }
+
+
+                    if(req.body.queryResult.action=="claim.global"){
+  
+                        res.json(
+                            {
+                                'fulfillmentText': JSON.stringify([
+                                    {res:"Make a claim"},
+                                    {res:"My claim details"},
+                                    {res:"Go back to assistance"}
+                                ])
+                            }
+                        );
+                        
+                        }
 
   });
+  
 
 
   router.post('/translate', (req, res) => {

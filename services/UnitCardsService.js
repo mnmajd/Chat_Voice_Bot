@@ -65,15 +65,24 @@ exports.expireCard=(req,res,next)=> {
 
 
 exports.chargeCard=(req,res,next)=> {
-    unit.findOne({Code : req.body.cardcode}).then(
-        of => {
-
-            user.findOneAndUpdate({_id : req.body.userid},{$inc: { CreditAmount: 1 } }).then(
+    unit.findOne({Code : req.body.cardcode}).exec(function (err, u) {
+        if (u.Expired) {
+            responseHandler.resHandler(false, null, `Card expired`, res, 500);
+        }else{
+            user.findOneAndUpdate({_id : req.body.userid},{$inc: { CreditAmount: u.Amount } }).then(
                 of => {
+                    unit.findOneAndUpdate({_id: u.id}, { Expired : 'true' }).exec(function (err, u){
+                        if (err) {
+                            responseHandler.resHandler(false, null, `error : ${err}`, res, 500);   
+                        }
+                    })
                     responseHandler.resHandler(true, of, "card charged", res, 200)
                 }
             ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-            //responseHandler.resHandler(true, of, "card detected", res, 200)
         }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+        
+
+    });
+
+    
 }
