@@ -18,9 +18,12 @@ var UserSchema = new mongoose.Schema
                     Latitude : { type : Number , required : false},
 
                 }
-            ],
+            ],*/
 
-           /* Phone    : { type : Number , required : true},*/
+            Phone    : { type : Number , required : true},
+            Email     : { type : String , required : true},
+            CreditAmount     : { type : Number , default:0},
+            ActiveOffer :  { type:mongoose.Schema.ObjectId , ref : ' Offer' , required : false}
            /* Is_Admin : { type : Boolean , required : false , default: false}*/
 
     }

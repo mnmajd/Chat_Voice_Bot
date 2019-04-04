@@ -1,4 +1,6 @@
-var offer = require('../models/ServiceSchema');
+var service = require('../models/ServiceSchema');
+var user = require('../models/UserSchema');
+
 const responseHandler = require('../services/Responsehandler');
 
 exports.submitService=(req,res,next)=>{
@@ -9,7 +11,7 @@ exports.submitService=(req,res,next)=>{
         Type : req.body.Type,
         Offer: req.body.Offer,
     }
-    offer.create(newservice).then(
+    service.create(newservice).then(
         of=>{
             responseHandler.resHandler(true, of, "sucessful service submission", res, 200)
         }
@@ -17,24 +19,39 @@ exports.submitService=(req,res,next)=>{
 
 }
 exports.updateservice=(req,res,next)=> {
-    offer.findOneAndUpdate({Title: req.params.title}, req.body).then(
+    service.findOneAndUpdate({Title: req.params.title}, req.body).then(
         of => {
             responseHandler.resHandler(true, of, "sucessful service updated", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 exports.deleteservice=(req,res,next)=> {
-    offer.findOneAndRemove({Title: req.params.title}, req.body).then(
+    service.findOneAndRemove({Title: req.params.title}, req.body).then(
         of => {
             responseHandler.resHandler(true, of, "sucessful service deleted", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 exports.getServicebyId=(req,res,next)=> {
-    offer.findById(req.params.id).then(
+    service.findById(req.params.id).then(
         of => {
             responseHandler.resHandler(true, of, "service detected", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 
+exports.getAllServices=(req,res,next)=> {
+    service.find().then(
+        of => {
+            responseHandler.resHandler(true, of, "all services detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
+exports.activateOffer=(req,res,next)=> {
+    user.findOneAndUpdate({_id: req.params.userid}, { ActiveOffer : req.params.offerid }).then(
+        of => {
+            responseHandler.resHandler(true, of, "offer activated succeffuly", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}

@@ -11,6 +11,7 @@ router.post('/signup', (req, res, next) => {
             FirstName: req.body.FirstName,
             LastName  : req.body.LastName,
             Email :req.body.Email,
+            Phone :req.body.Phone,
             Adress : {
                 Number :req.body.Number ,
                 Street : req.body.Street,
