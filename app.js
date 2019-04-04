@@ -15,6 +15,8 @@ var usersRouter = require('./routes/users');
 var offersRouter = require('./routes/offers');
 var claimsRouter = require('./routes/claims');
 var servicesRouter = require('./routes/services');
+var cardsRouter = require('./routes/unitcards');
+
 var chatRouter = require('./routes/chat');
 
 
@@ -45,6 +47,8 @@ app.use('/users', usersRouter);
 app.use('/offers', offersRouter);
 app.use('/claims', claimsRouter);
 app.use('/services', servicesRouter);
+app.use('/cards', cardsRouter);
+
 app.use('/chat', chatRouter);
 
 socket.conn();
