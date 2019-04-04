@@ -8,11 +8,13 @@ var logger = require('morgan');
 var config = require('./config/DbConf');
 const url = config.mongoUrl;
 mongoose.connect(url)
+var socket = require('./config/sock');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var offersRouter = require('./routes/offers');
 var claimsRouter = require('./routes/claims');
+var chatRouter = require('./routes/chat');
 
 
 var app = express();
@@ -31,7 +33,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/offers', offersRouter);
 app.use('/claims', claimsRouter);
+app.use('/chat', chatRouter);
 
+socket.conn();
+socket.fromClient();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

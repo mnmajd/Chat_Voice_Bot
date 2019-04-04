@@ -1,8 +1,6 @@
-
 var botui = new BotUI('api-bot');
 var socket = io.connect('http://localhost:8010');
 // read the BotUI docs : https://docs.botui.org/
-
 
 
 
@@ -17,6 +15,7 @@ botui.message.add({
       placeholder: 'Say Hello', }
   }
 ).then(function (res) {
+
   socket.emit('fromClient', { client : res.value });
  
   // sends the message typed to server

@@ -5,6 +5,8 @@ var io = require('socket.io')(server);
 var api = require('./api');
 
 var conn = function() {
+  console.log("this is nice");
+
   server.listen(8010);
 
   app.get('/', function (req, res) {
