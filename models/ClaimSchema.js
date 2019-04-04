@@ -8,7 +8,7 @@ var ClaimSchema = new mongoose.Schema(
         Degre : {type : String },
         Date : {type : Date , default:Date.now()},
         Treated : {type : Boolean , default: 'false'},
-        User: {type: mongoose.Schema.ObjectId, required: true, index: true , ref: 'User'}
+        User: {type: mongoose.Schema.ObjectId,  required: true,index: true , ref: 'User'}
     }
 )
 module.exports = mongoose.model('Claim',ClaimSchema )

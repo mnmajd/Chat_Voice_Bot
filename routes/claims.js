@@ -3,6 +3,8 @@ var router = express.Router();
 var ClaimService=require('../services/ClaimService');
 
 
-router.post('/:idUser', ClaimService.sendClaim);
+router.post('/', ClaimService.sendClaim);
+router.put('/:idClaim', ClaimService.treatClaim);
+
 
 module.exports = router;

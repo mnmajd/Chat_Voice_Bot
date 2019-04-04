@@ -10,29 +10,47 @@ const from = '21624390420';
 const to = '21624390420';
 const text = 'Your claim has been successful sent to admin';
 
-exports.sendClaim=(req,res,next)=>{
-    const newclaim={
-        Title : req.body.Title,
-        Content : req.body.Content,
-        Type : req.body.Type,
-        Degre : req.body.Degre,
+exports.sendClaim = (req, res, next) => {
+    const newclaim = {
+        Title: req.body.Title,
+        Content: req.body.Content,
+        Type: req.body.Type,
+        Degre: req.body.Degre,
         Date: req.body.Date,
         Treated: req.body.Treated,
-        User: req.params.idUser
+        User: req.user._id
     }
     claim.create(newclaim).then(
-        of=>{
+        claim => {
             nexmo.message.sendSms(from, to, text, (err, responseData) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    if(responseData.messages[0]['status'] === "0") {
+                    if (responseData.messages[0]['status'] === "0") {
                         console.log("Message sent successfully.");
                     } else {
                         console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
                     }
                 }
             })
-            responseHandler.resHandler(true, of, "sucessful claim sended", res, 200)
+            responseHandler.resHandler(true, claim, "sucessful claim sended", res, 200)
         }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))}
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
+exports.treatClaim = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+            if (claim.Treated === false) {
+                claim.Treated =  true
+            }
+            else{
+                claim.Treated = false
+            }
+            claim.User = req.user._id
+            claim.save()
+            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
