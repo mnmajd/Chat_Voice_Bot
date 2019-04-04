@@ -20,13 +20,23 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(passport.initialize())
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+///////// Connected user ///////////////
+var session = require("express-session"),
+    bodyParser = require("body-parser");
+app.use(express.static("public"));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+///////// Connected user ///////////////
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/offers', offersRouter);
