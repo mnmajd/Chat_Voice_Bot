@@ -6,6 +6,7 @@ var ClaimService=require('../services/ClaimService');
 router.post('/', ClaimService.sendClaim);
 router.put('/:idClaim', ClaimService.treatClaim);
 router.get('/', ClaimService.followUpClaim);
-router.get('/all', ClaimService.findAllClaimsByTreated);
+router.get('/allTT', ClaimService.findAllClaimsByTreated);
+router.get('/allDegre', ClaimService.findAllClaimsByDegre);
 
 module.exports = router;

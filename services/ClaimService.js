@@ -9,10 +9,18 @@ const nexmo = new Nexmo({
 const from = '21624390420';
 const to = '21624390420';
 const text = 'Your claim has been successful sent to admin';
+
 var data = [];
+
 var dataTreated = [];
 var dataNotTreated = [];
 var dataAllTreated = [];
+
+var dataVeryImportant = [];
+var datamoderatelyImportant = [];
+var dataImportant = [];
+var dataDegre = [];
+
 exports.sendClaim = (req, res, next) => {
     const newclaim = {
         Title: req.body.Title,
@@ -96,9 +104,46 @@ exports.findAllClaimsByTreated = (req, res, next) => {
                 }
             });
             dataAllTreated = dataTreated.concat(dataNotTreated);
-
             responseHandler.resHandler(true, dataAllTreated, "claims detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
 
+
+exports.findAllClaimsByDegre = (req, res, next) => {
+    claim.find().then(
+        claims => {
+            claims.forEach(function (claim) {
+                if (claim.Degre === 'very important') {
+                    dataVeryImportant.push({
+                        Title: claim.Title,
+                        Content: claim.Content,
+                        Type: claim.Type,
+                        State: claim.State,
+                        Degre: claim.Degre
+                    });
+                }
+                else if (claim.Degre === 'important') {
+                    dataImportant.push({
+                        Title: claim.Title,
+                        Content: claim.Content,
+                        Type: claim.Type,
+                        State: claim.State,
+                        Degre: claim.Degre
+                    });
+                }
+                else {
+                    datamoderatelyImportant.push({
+                        Title: claim.Title,
+                        Content: claim.Content,
+                        Type: claim.Type,
+                        State: claim.State,
+                        Degre: claim.Degre
+                    });
+                }
+            });
+            dataDegre = dataVeryImportant.concat(dataImportant , datamoderatelyImportant);
+            responseHandler.resHandler(true, dataDegre, "claims detected", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
