@@ -34,25 +34,18 @@ console.log(JSON.stringify(req.body));
 
 
 
-   if(req.body.queryResult.action=="input.welcome"){
-  
-    res.json(
-        {
-            'fulfillmentText': JSON.stringify([
-                {res:"register"},
-                {res:"response 2"}
-            ])
-        }
-    );
-    res.json(
-        {
-            'fulfillmentText': JSON.stringify([
-                {res:"register"},
-                {res:"response 2"}
-            ])
-        }
-    );
-    }
+      if(req.body.queryResult.action=="input.welcome"){
+
+          res.json(
+              {
+                  'fulfillmentText': JSON.stringify([
+                      {res:"Register"},
+                      {res:"Continue as guest"}
+                  ])
+              }
+          );
+
+      }
 
   });
 

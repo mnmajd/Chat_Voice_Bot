@@ -41,5 +41,40 @@ exports.getOfferById=(req,res,next)=> {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+exports.getAllOffers=(req,res,next)=> {
+    offer.find().then(
+        of => {
+            responseHandler.resHandler(true, of, " all offers detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.getTypesOfOffers=(req,res,next)=> {
+    offer.find().distinct("Type").then(
+        types => {
+            responseHandler.resHandler(true,types, " all types detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.getOffersByPeriodAndType=(req,res,next)=> {
+    offer.find({Type:req.params.type,Duration:req.params.duration}).then(
+        offers => {
+            responseHandler.resHandler(true, offers, "offers by period detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.getMaxPriceOffer=(req,res,next)=> {
+    offer.find().sort('-Price').then(
+        doc => {
+            responseHandler.resHandler(true,  doc[0].Price, "max detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.getMaxPriceOfferByPeriodAndType=(req,res,next)=> {
+    offer.find({Type:req.params.type,Duration:req.params.duration}).select("Price").sort({"Price" : -1}).limit(1).then(
+        doc => {
+            responseHandler.resHandler(true,  doc[0].Price, "max detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
 
 
