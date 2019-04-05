@@ -25,6 +25,11 @@ botui.message.add({
       if (IsJsonString(data.server)) {
         newMultipleMessage(data.server);
 
+      }else if(IsJsonString(data.server) && data.server.playload){
+        newMessage(data.server);
+
+        newMultipleMessage(data.server);
+
       }
       else{
         
