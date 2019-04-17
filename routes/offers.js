@@ -11,6 +11,8 @@ router.delete('/:title',OfferServices.deleteoffer);
 router.get('/',OfferServices.getAllOffers);
 router.get('/types',OfferServices.getTypesOfOffers);
 router.get('/max',OfferServices.getMaxPriceOffer);
+router.get('/getBeneficeByOffer/:offerid/:price',OfferServices.getBeneficeByOffer);
+router.get('/CountUserByOffer/:offerid',OfferServices.CountUserByOffer);
 router.get('/max/:type/:duration',OfferServices.getMaxPriceOfferByPeriodAndType);
 router.get('/all/:type/:duration',OfferServices.getOffersByPeriodAndType);
 router.get('/:id',OfferServices.getOfferById);

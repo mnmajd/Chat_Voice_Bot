@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var passportLocalMongoose = require('passport-local-mongoose');
+var offer = require('../models/OfferSchema');
 
 var UserSchema = new mongoose.Schema
 (

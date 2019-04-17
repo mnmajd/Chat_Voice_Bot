@@ -7,6 +7,24 @@ const translate = require('@vitalets/google-translate-api');
 var response1=null;
 
 router.get('/', function(req, res, next) {
+    //get ip of client
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(ip);
+    var cookie = req.cookies.cookieNames;
+    if (cookie === undefined)
+    {
+        // no: set a new cookie
+        var randomNumber=Math.random().toString();
+        randomNumber=randomNumber.substring(2,randomNumber.length);
+        res.cookie('cookieNames',randomNumber, { maxAge: 900000, httpOnly: true });
+        console.log('cookie created successfully');
+        console.log(cookie);
+    }
+    else
+    {
+        // yes, cookie was already present
+        console.log('cookie exists', cookie);
+    }
     res.render('index.ejs', { title: 'botUI_api.ai' });
     console.log(res);
   });
@@ -16,7 +34,7 @@ router.get('/', function(req, res, next) {
     sentiment
         .process('en', req.body.queryResult.queryText)
         .then(result => console.log(result.score));
-console.log(JSON.stringify(req.body));
+        console.log(JSON.stringify(req.body));
 
     /*translate(req.body.queryResult.queryText, {to: 'en'}).then(res1 => {
     console.log(res1.from.language.iso);

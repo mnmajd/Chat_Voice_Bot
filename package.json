@@ -6,6 +6,10 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
+    "react-voice-components": "^1.0.0",
     "@vitalets/google-translate-api": "^2.8.0",
     "actions-on-google": "^2.2.0",
     "apiai": "^4.0.3",
@@ -34,4 +38,5 @@
     "socket.io": "^2.1.1",
     "yargs": "*"
   }
+
 }

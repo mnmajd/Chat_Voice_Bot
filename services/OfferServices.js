@@ -3,6 +3,7 @@
  */
 var offer = require('../models/OfferSchema');
 const responseHandler = require('../services/Responsehandler');
+var user = require('../models/UserSchema');
 
 exports.submitoffer=(req,res,next)=>{
     const newoffer={
@@ -76,5 +77,22 @@ exports.getMaxPriceOfferByPeriodAndType=(req,res,next)=> {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+exports.getBeneficeByOffer=(req,res,next)=> {
+    var b=0;
+    user.count({ActiveOffer:req.params.offerid}).then(
+        us => {
+            b=us*req.params.price;
+            responseHandler.resHandler(true, b, "max detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.CountUserByOffer=(req,res,next)=> {
 
+    user.count({ActiveOffer:req.params.offerid}).then(
+        nb => {
+            console.log(nb)
+            responseHandler.resHandler(true,  nb, "max detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
 

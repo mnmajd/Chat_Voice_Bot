@@ -50,7 +50,9 @@ app.use('/services', servicesRouter);
 app.use('/cards', cardsRouter);
 
 app.use('/chat', chatRouter);
-
+app.get('/express_backend', (req, res) => {
+    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
 socket.conn();
 socket.fromClient();
 
