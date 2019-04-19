@@ -6,6 +6,8 @@ import Header from "./Header";
 import Login from "./Login";
 import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
+import Chat from "./Chat";
+import Claim from "./Claim";
 
 class Home extends Component {
     render() {
@@ -21,14 +23,11 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-                                {/*<Route path="/home/login"  component={Login}/>*/}
-                                {/*<Route path="/home/register"  component={Register}/>*/}
-                                <div className="botui-app-container" id="api-bot">
-                                    <bot-ui></bot-ui>
-                                </div>
 
-
-                                </div>
+                                <Route path="/home/login"  component={Login}/>
+                                <Route path="/home/register"  component={Register}/>
+                                <Route path="/"   component={Chat}/>
+                            </div>
                             </div>
                         </div>
 

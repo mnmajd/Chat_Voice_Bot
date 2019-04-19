@@ -24,7 +24,8 @@ class Header extends Component {
                             <ul className="navbar-nav">
                                 <li className="nav-item">
                                     <a  className="nav-link">
-                                        <i className="material-icons">dashboard</i> Home
+                                        <i className="material-icons">dashboard</i>
+                                        <Link to='/home' style={{ color: '#FFF' }} >Home</Link>
                                     </a>
                                 </li>
                                 <li className="nav-item ">
@@ -37,6 +38,11 @@ class Header extends Component {
                                         <i className="material-icons">fingerprint</i> <Link to='/home/login' style={{ color: '#FFF' }} >Login</Link>
                                     </a>
                                 </li>
+                                {/*<li className="nav-item ">*/}
+                                    {/*<a className="nav-link">*/}
+                                        {/*<i className="material-icons">fingerprint</i> <Link to='/home/chat' style={{ color: '#FFF' }} >Chat</Link>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
                             </ul>
                         </div>
                     </div>

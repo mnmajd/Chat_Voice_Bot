@@ -37,11 +37,12 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="App">
+            <React.Fragment>
                 <div className="botui-app-container" id="api-bot">
                     <bot-ui></bot-ui>
                 </div>
-            </div>
+            </React.Fragment>
+
         );
     }
 }
