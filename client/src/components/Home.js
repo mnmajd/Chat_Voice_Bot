@@ -8,6 +8,7 @@ import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
 import Chat from "./Chat";
 import Claim from "./Claim";
+import Profile from "./Profile";
 
 class Home extends Component {
     render() {
@@ -23,10 +24,10 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-
                                 <Route path="/home/login"  component={Login}/>
                                 <Route path="/home/register"  component={Register}/>
-                                <Route path="/"   component={Chat}/>
+                                <Route path="/home/profile"  component={Profile}/>
+
                             </div>
                             </div>
                         </div>

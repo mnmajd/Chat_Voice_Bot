@@ -9,68 +9,40 @@ class Register extends Component {
                         <h2 className="card-title text-center">Register</h2>
                         <div className="card-body">
                             <form className="form" method action>
-                            <div className="row">
-                                <div className="col-md-5 ml-auto">
+                                <div className="row">
+                                    <div className="col-md-5 ml-auto">
 
-                                    <div className="form-group has-default">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
+                                        <div className="form-group has-default">
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
                           <span className="input-group-text">
-                            <i className="material-icons">face</i>
+                            <i className="material-icons">person_outline</i>
                           </span>
+                                                </div>
+                                                <input type="text" className="form-control"
+                                                       placeholder="First Name..."/>
                                             </div>
-                                            <input type="text" className="form-control"
-                                                   placeholder="First Name..."/>
                                         </div>
-                                    </div>
-                                    <div className="form-group has-default">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
+                                        <div className="form-group has-default">
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
                           <span className="input-group-text">
-                            <i className="material-icons">face</i>
+                            <i className="material-icons">person</i>
                           </span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder="Last Name..."/>
                                             </div>
-                                            <input type="text" className="form-control" placeholder="Last Name..."/>
                                         </div>
-                                    </div>
-                                    <div className="form-group has-default">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
+                                        <div className="form-group has-default">
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
                           <span className="input-group-text">
                             <i className="material-icons">mail</i>
                           </span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder="Email..."/>
                                             </div>
-                                            <input type="text" className="form-control" placeholder="Email..."/>
                                         </div>
-                                    </div>
-                                    <div className="form-group has-default">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
-                          <span className="input-group-text">
-                            <i className="material-icons">lock_outline</i>
-                          </span>
-                                            </div>
-                                            <input type="password" placeholder="Password..."
-                                                   className="form-control"/>
-                                        </div>
-                                    </div>
-                                    <div className="form-group has-default">
-                                        <div className="input-group">
-                                            <div className="input-group-prepend">
-                          <span className="input-group-text">
-                            <i className="material-icons">lock_outline</i>
-                          </span>
-                                            </div>
-                                            <input type="password" placeholder="Confirm Password..."
-                                                   className="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-5 mr-auto">
-                                    {/*<label className="bmd-label-floating" style={{marginLeft:'30px',color:"#3c4858"}}>Adress : </label>*/}
-                                    <h6 className="card-title text-center">Adress:</h6>
-
                                         <div className="form-group has-default">
                                             <div className="input-group">
                                                 <div className="input-group-prepend">
@@ -78,7 +50,7 @@ class Register extends Component {
                             <i className="material-icons">lock_outline</i>
                           </span>
                                                 </div>
-                                                <input type="password" placeholder="Country..."
+                                                <input type="password" placeholder="Password..."
                                                        className="form-control"/>
                                             </div>
                                         </div>
@@ -89,37 +61,76 @@ class Register extends Component {
                             <i className="material-icons">lock_outline</i>
                           </span>
                                                 </div>
-                                                <input type="password" placeholder="City..." className="form-control"/>
+                                                <input type="password" placeholder="Confirm Password..."
+                                                       className="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md-5 mr-auto">
+
+                                        <div className="form-group has-default">
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <i className="material-icons">room</i>
+                          </span>
+                                                </div>
+                                                <input type="text" placeholder="Country..."
+                                                       className="form-control"/>
                                             </div>
                                         </div>
                                         <div className="form-group has-default">
                                             <div className="input-group">
                                                 <div className="input-group-prepend">
                           <span className="input-group-text">
-                            <i className="material-icons">lock_outline</i>
+                            <i className="material-icons">room</i>
                           </span>
                                                 </div>
-                                                <input type="password" placeholder="Postal Code..."
+                                                <input type="text" placeholder="City..." className="form-control"/>
+                                            </div>
+                                        </div>
+                                        <div className="form-group has-default">
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <i className="material-icons">room</i>
+                          </span>
+                                                </div>
+                                                <input type="text" placeholder="Postal Code..."
                                                        className="form-control"/>
                                             </div>
                                         </div>
-                                        <div className="form-check">
-                                            <label className="form-check-label">
-                                                <input className="form-check-input" type="checkbox" defaultValue
-                                                       defaultChecked/>
-                                                <span className="form-check-sign">
-                          <span className="check"/>
-                        </span>
-                                                I agree to the
-                                                <a href="#something">terms and conditions</a>.
-                                            </label>
+
+                                        <div className="form-group has-default" style={{marginLeft:'150px'}}>
+                                            <div className="fileinput fileinput-new text-center"
+                                                 data-provides="fileinput">
+                                                <div className="fileinput-new thumbnail img-circle">
+                                                    <img src={require('../assets/img/placeholder.jpg')} alt="..."/>
+                                                </div>
+                                                <div
+                                                    className="fileinput-preview fileinput-exists thumbnail img-circle"/>
+                                                <div>
+                                        <span className="btn btn-round btn-rose btn-file">
+                                          <span className="fileinput-new">Add Photo</span>
+                                          <span className="fileinput-exists">Change</span>
+                                          <input type="file" name="..."/>
+                                        </span>
+                                                </div>
+                                                <br/>
+                                                <a href="#pablo" className="btn btn-danger btn-round fileinput-exists"
+                                                   data-dismiss="fileinput"><i className="fa fa-times"/> Remove</a>
+                                            </div>
                                         </div>
+
+                                        {/*<div className="form-group has-default">*/}
+                                        {/*<div className="btn btn-primary btn-round mt-4">Get Started</div>*/}
+                                        {/*</div>*/}
                                         <div className="text-center">
                                             <a href="#pablo" className="btn btn-primary btn-round mt-4">Get Started</a>
                                         </div>
-
+                                    </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                     </div>

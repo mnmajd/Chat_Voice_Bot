@@ -38,6 +38,31 @@ class Header extends Component {
                                         <i className="material-icons">fingerprint</i> <Link to='/home/login' style={{ color: '#FFF' }} >Login</Link>
                                     </a>
                                 </li>
+
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/profile' style={{ color: '#FFF' }} >Profile</Link>
+                                    </a>
+                                </li>
+
+                                <li className="dropdown nav-item">
+                                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
+                                        <i className="material-icons">view_carousel</i> About me
+                                    </a>
+                                    <div className="dropdown-menu dropdown-with-icons">
+                                        <a href="./examples/about-us.html" className="dropdown-item">
+                                            <i className="material-icons">account_balance</i> Services
+                                        </a>
+                                        <a href="./examples/about-us.html" className="dropdown-item">
+                                            <i className="material-icons">account_balance</i> Offers
+                                        </a>
+                                        <a href="./examples/blog-post.html" className="dropdown-item">
+                                            <i className="material-icons">art_track</i> Claims
+                                        </a>
+
+                                    </div>
+                                </li>
+
                                 {/*<li className="nav-item ">*/}
                                     {/*<a className="nav-link">*/}
                                         {/*<i className="material-icons">fingerprint</i> <Link to='/home/chat' style={{ color: '#FFF' }} >Chat</Link>*/}
