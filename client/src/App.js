@@ -1,53 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Admin from "./components/Admin";
+import {Provider} from 'react-redux';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+import store from './store';
+import Home from "./components/Home";
+
 
 class App extends Component {
-    state = {
-        results: []
-    };
 
-    componentDidMount() {
-        // Call our fetch function below once the component mounts
-        this.callBackendAPI()
-            .then(res => {
-                console.log(JSON.parse(JSON.stringify(res.data)))
-                return res.data.json();
-                console.log("ahla")
-            })
-            .then((data)=>{
-                for(let i=0;i<data.length;i++){
-                    console.log(data[i]);
-                    this.setState({
-                        results:data.map(item=>({
-                            title:item.Title
-                        }))
-                    })
-                }
-                }
 
-            )
-            .catch(err => console.log(err));
-    }
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-    callBackendAPI = async () => {
-        const response = await fetch('/offers');
-        const body = await response.json();
-
-        if (response.status !== 200) {
-            throw Error(body.message)
-        }
-        return body;
-    };
 
     render() {
         return (
-            <div className="App">
-
-                <div className="botui-app-container" id="api-bot">
-                    <bot-ui></bot-ui>
-                </div>
-            </div>
+            <Provider store={store}>
+                <Router>
+                    <React.Fragment>
+                        <Route path="/admin" exact component={Admin} />
+                        <Route path="/home" exact component={Home} />
+                    </React.Fragment>
+                </Router>
+            </Provider>
         );
     }
 }

@@ -1,0 +1,37 @@
+import React, {Component} from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+
+
+import Header from "./Header";
+import Login from "./Login";
+import Background from "../assets/img/lock.jpg";
+import Register from "./Register";
+
+class Home extends Component {
+    render() {
+        return (
+            <Router>
+                <React.Fragment>
+                    <Route path="*" exact component={Header} />
+                    <div className="wrapper wrapper-full-page">
+                        <div className="page-header register-page header-filter" style={{
+                            backgroundImage: `url(${Background})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'top center'
+                        }}>
+
+                            <div className="container">
+                                <Route path="/home/login"  component={Login}/>
+                                <Route path="/home/register"  component={Register}/>
+                                </div>
+                            </div>
+                        </div>
+
+                </React.Fragment>
+            </Router>
+
+        );
+    }
+}
+
+export default Home;
