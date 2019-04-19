@@ -21,8 +21,13 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-                                <Route path="/home/login"  component={Login}/>
-                                <Route path="/home/register"  component={Register}/>
+                                {/*<Route path="/home/login"  component={Login}/>*/}
+                                {/*<Route path="/home/register"  component={Register}/>*/}
+                                <div className="botui-app-container" id="api-bot">
+                                    <bot-ui></bot-ui>
+                                </div>
+
+
                                 </div>
                             </div>
                         </div>

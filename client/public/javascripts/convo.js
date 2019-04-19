@@ -1,7 +1,5 @@
 var botui = new BotUI('api-bot');
 var socket = io.connect('http://localhost:8010');
-// read the BotUI docs : https://docs.botui.org/
-
 
 botui.message.add({
   content: 'Lets Start Talking...',
@@ -48,7 +46,6 @@ function IsJsonString(str) {
 }
 //IsJsonString(response)
 function newMessage (response) {
-
       botui.message.add({
         content: response,
         delay: 0,

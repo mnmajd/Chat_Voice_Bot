@@ -21,6 +21,9 @@ var datamoderatelyImportant = [];
 var dataImportant = [];
 var dataDegre = [];
 
+var dateClaims=[];
+var somme = 0;
+
 exports.sendClaim = (req, res, next) => {
     const newclaim = {
         Title: req.body.Title,
@@ -147,3 +150,49 @@ exports.findAllClaimsByDegre = (req, res, next) => {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+
+
+// const aggregatorOpts = [{
+//     $unwind: "$claims"
+// },
+//     {
+//         $group: {
+//             _id: "$claims.Date",
+//             count: { $sum: 1 }
+//         }
+//     }
+// ]
+exports.getclaimsByMonth = (req, res, next) => {
+const aggregatorOpts = [{
+    $unwind: "$claims"
+},
+    {
+        $group: {
+            _id: "$claims.Date",
+            count: { $sum: 1 }
+        }
+    }
+]
+
+claim.aggregate(aggregatorOpts).exec(
+    claims => {
+        console.log(aggregatorOpts)
+    }
+)
+}
+// exports.getclaimsByMonth = (req, res, next) => {
+//     claim.aggregate(aggregatorOpts).then(
+//         claims => {
+//
+//             // Post.find().sort([['updatedAt', 'descending']]).all(function (posts) {
+//             //     // do something with the array of posts
+//             // });
+//
+//
+//             responseHandler.resHandler(true, claims, "claims detected", res, 200)
+//
+//
+//             // console.log(claims.length)
+//         }
+//     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+// }

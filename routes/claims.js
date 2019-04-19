@@ -8,5 +8,5 @@ router.put('/:idClaim', ClaimService.treatClaim);
 router.get('/', ClaimService.followUpClaim);
 router.get('/allTT', ClaimService.findAllClaimsByTreated);
 router.get('/allDegre', ClaimService.findAllClaimsByDegre);
-
+router.get('/getByMonth', ClaimService.getclaimsByMonth);
 module.exports = router;
