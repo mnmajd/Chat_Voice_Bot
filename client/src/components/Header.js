@@ -10,7 +10,7 @@ class Header extends Component {
                      color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-wrapper">
-                            <a className="navbar-brand" href="#pablo">Material Dashboard Pro</a>
+                            <a className="navbar-brand" href="#pablo">SFM Telecom</a>
                         </div>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -50,14 +50,14 @@ class Header extends Component {
                                         <i className="material-icons">view_carousel</i> About me
                                     </a>
                                     <div className="dropdown-menu dropdown-with-icons">
-                                        <a href="./examples/about-us.html" className="dropdown-item">
-                                            <i className="material-icons">account_balance</i> Services
+                                        <a href="" className="dropdown-item">
+                                            <i className="material-icons">shopping_cart</i> <Link to='/home/service' style={{ color: '#FFF' }} >Services</Link>
                                         </a>
                                         <a href="./examples/about-us.html" className="dropdown-item">
-                                            <i className="material-icons">account_balance</i> Offers
+                                            <i className="material-icons">attach_money</i> Offers
                                         </a>
                                         <a href="./examples/blog-post.html" className="dropdown-item">
-                                            <i className="material-icons">art_track</i> Claims
+                                            <i className="material-icons">warning</i> Claims
                                         </a>
 
                                     </div>

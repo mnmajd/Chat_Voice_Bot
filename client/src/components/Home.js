@@ -9,6 +9,7 @@ import Register from "./Register";
 import Chat from "./Chat";
 import Claim from "./Claim";
 import Profile from "./Profile";
+import Services from "./Services";
 
 class Home extends Component {
     render() {
@@ -27,7 +28,8 @@ class Home extends Component {
                                 <Route path="/home/login"  component={Login}/>
                                 <Route path="/home/register"  component={Register}/>
                                 <Route path="/home/profile"  component={Profile}/>
-
+                                <Route path="/home/service"  component={Services}/>
+                                {/*<Route path="/home"  component={Chat}/>*/}
                             </div>
                             </div>
                         </div>
