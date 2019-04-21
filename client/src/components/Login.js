@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
-import { LoginActions } from '../store/actions/LoginActions';
-import  { Redirect } from 'react-router-dom'
+import { login } from '../store/actions/LoginActions';
 import {history} from "../helpers";
 class Login extends Component {
     constructor(props){
@@ -24,16 +23,18 @@ class Login extends Component {
         }
     }
     login = event =>{
-        this.setState({ submitted: true });
         const { username, password } = this.state;
         const { dispatch } = this.props;
         if (username && password) {
-            dispatch(LoginActions.login(username, password));
+            dispatch(login(username, password))
         }
     }
     render() {
+
         return (
-            <React.Fragment>
+
+        <React.Fragment>
+            {this.props.loggedIn ? 'loggedin' :
                 <div className="col-md-4 col-sm-6 ml-auto mr-auto">
                     <form className="form" method action>
                         <div className="card card-login card-hidden">
@@ -62,7 +63,7 @@ class Login extends Component {
                   </div>
                   <input type="text" className="form-control" placeholder="Username"
                          value={this.state.username}
-                         onChange = {this.handleChange('username')}
+                         onChange={this.handleChange('username')}
                   />
                 </div>
               </span>
@@ -82,19 +83,22 @@ class Login extends Component {
               </span>
                             </div>
                             <div className="card-footer justify-content-center">
-                                <a  className="btn btn-rose btn-link btn-lg"  onClick={(event)=>{this.login()}}>Lets Go</a>
+                                <a className="btn btn-rose btn-link btn-lg" onClick={(event) => {
+                                    this.login()
+                                }}>Lets Go</a>
                             </div>
                         </div>
                     </form>
                 </div>
+            }
             </React.Fragment>
         );
     }
 }
 const mapStateToProps = (state) =>{
-    const { loggingIn } = state.authentication;
+    const { loggedIn } = state.authentication;
     return {
-        loggingIn
+        loggedIn
     };
 }
 export default connect(
