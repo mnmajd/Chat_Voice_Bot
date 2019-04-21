@@ -9,7 +9,7 @@ var config = require('./config/DbConf');
 const url = config.mongoUrl;
 mongoose.connect(url)
 var socket = require('./config/sock');
-
+var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var offersRouter = require('./routes/offers');
@@ -21,6 +21,7 @@ var chatRouter = require('./routes/chat');
 
 
 var app = express();
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

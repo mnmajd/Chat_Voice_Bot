@@ -27,7 +27,6 @@ class Home extends Component {
                                 <Route path="/home/login"  component={Login}/>
                                 <Route path="/home/register"  component={Register}/>
                                 <Route path="/home/profile"  component={Profile}/>
-
                             </div>
                             </div>
                         </div>
