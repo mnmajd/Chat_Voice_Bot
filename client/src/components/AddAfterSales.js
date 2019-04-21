@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import { AddNewAfterSale } from '../store/actions/AfterSalesAction';
+import { connect } from 'react-redux';
 
 class AddAfterSales extends Component {
     constructor(props){
         super(props);
         this.state = {
             Title: '',
-            Type: '',
             Content : ''
 
         }
@@ -22,8 +22,12 @@ class AddAfterSales extends Component {
         }
     }
     render() {
+        console.log(" ameni huni"+this.props.Added)
+
         return (
+
             <React.Fragment>
+                {this.props.AfterSalesAddedcap ? 'added' : 'not added'}
                 <div className="main-panel">
                     <div className="content">
                         <div className="container-fluid">
@@ -41,12 +45,14 @@ class AddAfterSales extends Component {
                                                 <label htmlFor="exampleEmail" className="bmd-label-floating">Title</label>
                                                 <input type="text" className="form-control"
                                                        value={this.state.Title}
+                                                       onChange={this.handleChange('Title')}
                                                 />
                                             </div>
                                             <div className="form-group">
                                                 <label htmlFor="examplePass" className="bmd-label-floating">Content</label>
                                                 <input type="text" className="form-control"
                                                        value={this.state.Content}
+                                                       onChange={this.handleChange('Content')}
                                                 />
                                             </div>
 
@@ -65,4 +71,13 @@ class AddAfterSales extends Component {
     }
 }
 
-export default AddAfterSales;
+const mapStateToProps = (state) =>{
+    const { AfterSalesAdded } = state.aftersalesreducer;
+    return {
+        AfterSalesAdded
+    };
+}
+export default connect(
+    mapStateToProps,
+    null
+)(AddAfterSales);

@@ -25,6 +25,7 @@ export function AddNewAfterSale( Title , Content) {
         }
         AfterSalesServices.AddNewAfterSale(apiEndpoint , payload)
             .then((response)=>{
+                console.log(response)
                 if (response) {
                     dispatch(AfterSalesAddeed(response));
                 }
@@ -42,7 +43,6 @@ function Get_AfterSales(response){
 }
 function AfterSalesAddeed(response){
     return{
-        type: "ADD_AFFTERSALES",
-        payload: response.data
+        type: "ADD_AFFTERSALES"
     }
 }

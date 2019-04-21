@@ -1,4 +1,4 @@
-const initialState = { AfterSales: []}
+const initialState = { AfterSales: [] , AfterSalesAdded: false}
 export function aftersalesreducer(state = initialState, action) {
     console.log(" huni"+action.payload)
     switch (action.type) {
@@ -11,7 +11,7 @@ export function aftersalesreducer(state = initialState, action) {
         case 'ADD_AFFTERSALES':
             return {
                 ...state,
-                AfterSales : action.payload.data
+                AfterSalesAdded : true
             };
         default:
             return state

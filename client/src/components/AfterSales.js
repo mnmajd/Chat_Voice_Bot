@@ -14,6 +14,7 @@ class AfterSales extends Component {
         // console.log(this.props.AfterSales)
         return (
             <React.Fragment>
+                <AddAfterSales/>
                 <div className="main-panel">
                     <div className="content">
                         <div className="container-fluid">
@@ -77,7 +78,7 @@ class AfterSales extends Component {
 }
 
 const mapStateToProps = (state) =>{
-    const {AfterSales } = state.aftersalesreducer;
+    const { AfterSales } = state.aftersalesreducer;
     return {
         AfterSales
     };
