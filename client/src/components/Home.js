@@ -9,7 +9,6 @@ import Register from "./Register";
 import Chat from "./Chat";
 import Claim from "./Claim";
 import Profile from "./Profile";
-import Services from "./Services";
 
 class Home extends Component {
     render() {

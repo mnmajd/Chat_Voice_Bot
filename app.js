@@ -9,18 +9,19 @@ var config = require('./config/DbConf');
 const url = config.mongoUrl;
 mongoose.connect(url)
 var socket = require('./config/sock');
-
+var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var offersRouter = require('./routes/offers');
 var claimsRouter = require('./routes/claims');
 var servicesRouter = require('./routes/services');
 var cardsRouter = require('./routes/unitcards');
-
+var AfterSalesRouter = require('./routes/aftersales');
 var chatRouter = require('./routes/chat');
 
 
 var app = express();
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +49,7 @@ app.use('/offers', offersRouter);
 app.use('/claims', claimsRouter);
 app.use('/services', servicesRouter);
 app.use('/cards', cardsRouter);
+app.use('/afterSales',AfterSalesRouter );
 
 app.use('/chat', chatRouter);
 app.get('/express_backend', (req, res) => {

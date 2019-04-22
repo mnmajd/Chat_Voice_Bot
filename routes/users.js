@@ -50,5 +50,32 @@ router.get('/logout', function(req, res) {
         status: 'Logout successful!'
     });
 });
+router.get('/list' , function (req,res) {
+    User.find().then( users => {
+        res.send(users)
+    }).catch(err => res.send(err))
+})
+router.get('/list/:id' ,function (req,res) {
+    User.findById(req.params.id).then(user=> {
+        res.send(user)
+
+    } ).catch(err => { res.send(err)})
+
+})
+router.get('/getlocation/:id' ,function (req,res) {
+    ipstack(req.params.id,"9ec19080da758fddc2f0d59183044b8f",(err, response) => {
+        res.send(response)
+    })
+})
+
+router.put('/delete/:id' ,function (req,res) {
+    User.findByIdAndUpdate(req.params.id, req.body, {new: true}).then( todo => {
+        res.send("succesful")
+    }).catch(err => { res.send(err)})
+
+})
+router.get('/verify' ,authenticate.verifyOrdinaryUser,function (req ,res) {
+    res.send("you are authorized")
+})
 
 module.exports = router;

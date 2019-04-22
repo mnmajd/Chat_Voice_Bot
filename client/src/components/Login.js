@@ -1,9 +1,40 @@
 import React, {Component} from "react";
-
+import { connect } from 'react-redux';
+import { login } from '../store/actions/LoginActions';
+import {history} from "../helpers";
 class Login extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            submitted : false
+
+        }
+    }
+    handleChange = prop => event => {
+        this.setState({ [prop]: event.target.value });
+    };
+    componentDidMount() {
+        console.log(this.props);
+        if(localStorage.getItem('token')){
+            history.push('/home')
+
+        }
+    }
+    login = event =>{
+        const { username, password } = this.state;
+        const { dispatch } = this.props;
+        if (username && password) {
+            dispatch(login(username, password))
+        }
+    }
     render() {
+
         return (
-            <React.Fragment>
+
+        <React.Fragment>
+            {this.props.loggedIn ? 'loggedin' :
                 <div className="col-md-4 col-sm-6 ml-auto mr-auto">
                     <form className="form" method action>
                         <div className="card card-login card-hidden">
@@ -30,19 +61,13 @@ class Login extends Component {
                       <i className="material-icons">face</i>
                     </span>
                   </div>
-                  <input type="text" className="form-control" placeholder="First Name..."/>
+                  <input type="text" className="form-control" placeholder="Username"
+                         value={this.state.username}
+                         onChange={this.handleChange('username')}
+                  />
                 </div>
               </span>
-                                <span className="bmd-form-group">
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="material-icons">email</i>
-                    </span>
-                  </div>
-                  <input type="email" className="form-control" placeholder="Email..."/>
-                </div>
-              </span>
+
                                 <span className="bmd-form-group">
                 <div className="input-group">
                   <div className="input-group-prepend">
@@ -50,19 +75,33 @@ class Login extends Component {
                       <i className="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input type="password" className="form-control" placeholder="Password..."/>
+                  <input type="password" className="form-control" placeholder="Password..."
+                         value={this.state.password}
+                         onChange={this.handleChange('password')}
+                  />
                 </div>
               </span>
                             </div>
                             <div className="card-footer justify-content-center">
-                                <a href="#pablo" className="btn btn-rose btn-link btn-lg">Lets Go</a>
+                                <a className="btn btn-rose btn-link btn-lg" onClick={(event) => {
+                                    this.login()
+                                }}>Lets Go</a>
                             </div>
                         </div>
                     </form>
                 </div>
+            }
             </React.Fragment>
         );
     }
 }
-
-export default Login;
+const mapStateToProps = (state) =>{
+    const { loggedIn } = state.authentication;
+    return {
+        loggedIn
+    };
+}
+export default connect(
+    mapStateToProps,
+    null
+)(Login);

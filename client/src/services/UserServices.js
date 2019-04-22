@@ -6,6 +6,7 @@ export const userService = {
 };
 
 function login(apiEndpoint, payload){
+    debugger
     return axios.post(config.baseUrl+apiEndpoint, payload, getOptions()).then((response)=>{
         return response;
     }).catch((err)=>{
