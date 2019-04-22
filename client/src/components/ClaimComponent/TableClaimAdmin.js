@@ -1,15 +1,34 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import {getAllClaims} from "../../store/actions/ClaimActions";
+import {getAllClaims,treatClaim} from "../../store/actions/ClaimActions";
 import connect from "react-redux/es/connect/connect";
 
 
 class TableClaimAdmin extends Component {
     componentWillMount() {
         const {dispatch } = this.props;
-
         dispatch(getAllClaims())
     }
+    state = { Claims: null };
+    onClaimFetched = Claims => this.setState(() => ({ Claims }));
+    constructor(props) {
+        super(props);
+        this.state = {
+            change:'',
+            idClaim:''
+        }
+    }
+
+    // handleChange = prop => event => {
+    //     this.setState({[prop]: event.target.value});
+    // };
+
+    treat = event => {
+        const {change,idClaim} = this.state;
+        const {dispatch} = this.props;
+        dispatch(treatClaim(change,idClaim));
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -42,10 +61,24 @@ class TableClaimAdmin extends Component {
                                                 <td>{claim.State}</td>
                                                 <td className="text-right">{claim.Degre}</td>
                                                 <td className="td-actions text-right">
-                                                    <button type="button" rel="tooltip" className="btn btn-success btn-link">
+                                                    <button type="button" rel="tooltip" className="btn btn-success btn-link"
+                                                            disabled={claim.State ==='Treated'} style={{cursor: claim.State === 'Treated' ?'not-allowed':''}}
+                                                            onClick={(event) => {
+                                                                this.state.change='treated'
+                                                                ;this.state.idClaim=claim.Id;
+                                                                this.treat()
+                                                            }}>
                                                         <i className="material-icons">done</i>
                                                     </button>
-                                                    <button type="button" rel="tooltip" className="btn btn-info btn-link">
+                                                    <button type="button" rel="tooltip" className="btn btn-info btn-link"
+                                                            disabled={claim.State ==='In Progress'} style={{cursor: claim.State === 'In Progress' ?'not-allowed':''}}
+                                                            onClick={(event) => {
+                                                                this.state.change='inprogress'
+                                                                ;this.state.idClaim=claim.Id;
+                                                                this.treat();
+                                                                refetch()
+                                                            }}
+                                                            >
                                                         <i className="material-icons">build</i>
                                                     </button>
                                                     <button type="button" rel="tooltip" className="btn btn-warning btn-link">
@@ -69,8 +102,10 @@ class TableClaimAdmin extends Component {
 }
 const mapStateToProps = (state) =>{
     const { Claims } = state.claimreducer;
+    const { ClaimTreated } = state.claimreducer;
     return {
-        Claims
+        Claims,
+        ClaimTreated
     };
 }
 export default connect(

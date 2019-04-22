@@ -3,7 +3,7 @@ import { history } from '../../helpers/index';
 
 export function getAllClaims() {
     return dispatch => {
-        let apiEndpoint = '/claims/allTT';
+        let apiEndpoint = '/claims/all';
         ClaimServices.getAllClaims(apiEndpoint)
             .then((response)=>{
                  if (response) {
@@ -13,6 +13,8 @@ export function getAllClaims() {
             })
     };
 }
+
+
 
 
 export function getClaimById(idClaim) {
@@ -28,6 +30,25 @@ export function getClaimById(idClaim) {
     };
 }
 
+
+export function treatClaim(change,idClaim) {
+    return dispatch => {
+        let apiEndpoint = '/claims/'+idClaim;
+        let payload = {
+            change: change
+        }
+        ClaimServices.treatClaim(apiEndpoint, payload)
+            .then((response)=>{
+                console.log(response)
+                if (response) {
+                    dispatch(ClaimTreated(response));
+                }
+            })
+            .catch(
+                console.log("error")
+            )
+    };
+}
 
 export function sendClaim(Title,Content, Type,Degre){
     return dispatch => {
@@ -60,6 +81,11 @@ function Get_Claims(response){
 function ClaimAdded(res){
     return{
         type: "CLAIM_SUCCESS_ADD"
+    }
+}
+function ClaimTreated(res){
+    return{
+        type: "CLAIM_SUCCESS_TREATED"
     }
 }
 function Get_ClaimById(response){

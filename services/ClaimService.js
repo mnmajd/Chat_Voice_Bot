@@ -34,7 +34,13 @@ exports.getClaimById = (req, res, next) => {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
-
+exports.getAllClaims=(req,res,next)=> {
+    claim.find().then(
+        claims => {
+            responseHandler.resHandler(true, claims, " all claims detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
 
 exports.sendClaim = (req, res, next) => {
     const newclaim = {
@@ -67,58 +73,29 @@ exports.sendClaim = (req, res, next) => {
 }
 
 exports.treatClaim = (req, res, next) => {
+    howToChange = req.body.change;
     claim.findById(req.params.idClaim).then(
         claim => {
-            if (claim.Treated === false) {
+            if (howToChange === 'treated') {
                 claim.Treated = true;
                 claim.State = 'Treated';
+            }
+            else if(howToChange === 'inprogress')
+            {
+                claim.Treated = false;
+                claim.State = 'In Progress';
             }
             else {
                 claim.Treated = false;
                 claim.State = 'Not Treated';
             }
-            claim.User = '5c878c3fe8bc74164ca40aa5'
-            claim.save()
+            // claim.User = '5c878c3fe8bc74164ca40aa5'
+             claim.save()
             responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 
-
-
-exports.treatedClaim = (req, res, next) => {
-    claim.findById(req.params.idClaim).then(
-        claim => {
-                claim.Treated = true;
-                claim.State = 'Treated';
-            claim.User = '5c878c3fe8bc74164ca40aa5'
-            claim.save()
-            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
-        }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-}
-exports.NotTreatedClaim = (req, res, next) => {
-    claim.findById(req.params.idClaim).then(
-        claim => {
-            claim.Treated = false;
-            claim.State = 'Not Treated';
-            claim.User = '5c878c3fe8bc74164ca40aa5'
-            claim.save()
-            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
-        }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-}
-exports.InProgressClaim = (req, res, next) => {
-    claim.findById(req.params.idClaim).then(
-        claim => {
-            claim.Treated = false;
-            claim.State = 'In Progress';
-            claim.User = '5c878c3fe8bc74164ca40aa5'
-            claim.save()
-            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
-        }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-}
 
 exports.followUpClaim = (req, res, next) => {
     claim.find({User: req.user._id}).then(
