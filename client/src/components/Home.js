@@ -1,22 +1,23 @@
 import React, {Component} from "react";
-import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 import Header from "./Header";
 import Login from "./Login";
 import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
-import Chat from "./Chat";
-import Claim from "./Claim";
 import Profile from "./Profile";
-
+import Services from "./Services";
+import AboutMe from "./AboutMe";
+import SendClaim from "./ClaimComponent/SendClaim";
+import Chat from "./Chat";
 class Home extends Component {
     render() {
         return (
-
+            <Router>
+                <React.Fragment>
+                    <Route path="*" exact component={Header} />
                     <div className="wrapper wrapper-full-page">
-                        <Route path="*" exact component={Header} />
-
                         <div className="page-header register-page header-filter" style={{
                             backgroundImage: `url(${Background})`,
                             backgroundSize: 'cover',
@@ -24,14 +25,19 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-                                    <Route path="/home" exact component={Chat}/>
-                                    <Route path="/home/register" component={Register}/>
-
+                                <Route path="/home/login"  component={Login}/>
+                                <Route path="/home/register"  component={Register}/>
+                                <Route path="/home/profile"  component={Profile}/>
+                                <Route path="/home/service"  component={Services}/>
+                                <Route path="/home/aboutme"  component={AboutMe}/>
+                                <Route path="/home/sendClaim"  component={SendClaim}/>
+                                {/*<Route path="/home"  component={Chat}/>*/}
+                            </div>
                             </div>
                         </div>
-                    </div>
 
-
+                </React.Fragment>
+            </Router>
 
         );
     }

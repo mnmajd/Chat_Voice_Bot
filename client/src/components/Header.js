@@ -10,7 +10,7 @@ class Header extends Component {
                      color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-wrapper">
-                            <a className="navbar-brand" href="#pablo">Material Dashboard Pro</a>
+                            <a className="navbar-brand" href="#pablo">SFM Telecom</a>
                         </div>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -45,23 +45,17 @@ class Header extends Component {
                                     </a>
                                 </li>
 
-                                <li className="dropdown nav-item">
-                                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i className="material-icons">view_carousel</i> About me
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/aboutme' style={{ color: '#FFF' }} >AboutMe</Link>
                                     </a>
-                                    <div className="dropdown-menu dropdown-with-icons">
-                                        <a href="./examples/about-us.html" className="dropdown-item">
-                                            <i className="material-icons">account_balance</i> Services
-                                        </a>
-                                        <a href="./examples/about-us.html" className="dropdown-item">
-                                            <i className="material-icons">account_balance</i> Offers
-                                        </a>
-                                        <a href="./examples/blog-post.html" className="dropdown-item">
-                                            <i className="material-icons">art_track</i> Claims
-                                        </a>
-
-                                    </div>
                                 </li>
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/sendClaim' style={{ color: '#FFF' }} >SendClaim</Link>
+                                    </a>
+                                </li>
+
 
                                 {/*<li className="nav-item ">*/}
                                     {/*<a className="nav-link">*/}

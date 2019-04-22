@@ -1,29 +1,36 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
+import Background from "../assets/img/sidebar-1.jpg";
 
 class Sidebar extends Component {
     render() {
         return (
             <React.Fragment>
-                {/*<div>*/}
-                {/*<div className="wrapper">*/}
                 <div className="sidebar" data-color="rose" data-background-color="black"
-                     data-image={require('../assets/img/sidebar-1.jpg')}>
-                    <div className="logo">
-                        <a href="http://www.creative-tim.com" className="simple-text logo-">
-                            SFM
-                        </a>
-                        <a href="http://www.creative-tim.com" className="simple-text logo-normal">
-                            Telecom
-                        </a>
-                    </div>
-                    <div className="sidebar-wrapper">
-                        <div className="user">
-                            <div className="photo">
-                                <img src={require('../assets/img/faces/avatar.jpg')}/>
-                            </div>
-                            <div className="user-info">
-                                <a data-toggle="collapse" href="#collapseExample" className="username">
+                data-image={require('../assets/img/sidebar-1.jpg')}>
+
+                    {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black" style={{*/}
+                        {/*backgroundImage: `url(${Background})`,*/}
+                    {/*}}>*/}
+
+                        {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black"*/}
+                        {/*style={{backgroundImage: `url(${Background})`}}>*/}
+                        <div className="logo">
+                            <a href="" className="simple-text logo-mini">
+
+                            </a>
+                            <a href="" className="simple-text logo-normal">
+                                SFM Telecom
+                            </a>
+
+                        </div>
+                        <div className="sidebar-wrapper">
+                            <div className="user">
+                                <div className="photo">
+                                    <img src={require('../assets/img/faces/avatar.jpg')}/>
+                                </div>
+                                <div className="user-info">
+                                    <a data-toggle="collapse" href="#collapseExample" className="username">
                                           <span>
                                             Tania Andrew
                                             <b className="caret"></b>
@@ -83,41 +90,29 @@ class Sidebar extends Component {
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
+                                    <Link to='/admin/offers' style={{ color: '#FFF' }} >
                                     <p> Offers</p>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <p>After Sales Services</p>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <Link to='/admin/claims' style={{ color: '#FFF' }} >
-                                    <p> Claims</p>
                                     </Link>
                                 </a>
                             </li>
 
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <Link to='/admin/chat' style={{ color: '#FFF' }} >
-                                        <p> Chat</p>
-                                    </Link>
-                                </a>
-                            </li>
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
                                     <Link to='/admin/after' style={{ color: '#FFF' }} >
-                                        <p> After Sales</p>
+                                    <p> AfterSales</p>
                                     </Link>
                                 </a>
                             </li>
 
+                            <li className="nav-item ">
+                                <a className="nav-link" data-toggle="collapse" href="#">
+                                    <i className="material-icons">image</i>
+                                    <Link to='/admin/claims/table' style={{ color: '#FFF' }} >
+                                    <p> Claims</p>
+                                    </Link>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

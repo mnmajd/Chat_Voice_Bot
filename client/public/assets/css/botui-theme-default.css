@@ -2,7 +2,8 @@
 
 .botui-container {
     font-size: 14px;
-    background-color: rgba(0, 0, 0, 0);
+    background-color:white;
+    /*background-color: rgba(0, 0, 0, 0);*/
     font-family: "Open Sans", sans-serif
 }
 
