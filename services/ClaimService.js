@@ -33,7 +33,7 @@ exports.sendClaim = (req, res, next) => {
         Date: req.body.Date,
         Treated: req.body.Treated,
         State: req.body.State,
-        User: req.user._id
+         User: '5c878c3fe8bc74164ca40aa5'
     }
     claim.create(newclaim).then(
         claim => {

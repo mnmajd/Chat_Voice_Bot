@@ -45,23 +45,17 @@ class Header extends Component {
                                     </a>
                                 </li>
 
-                                <li className="dropdown nav-item">
-                                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-                                        <i className="material-icons">view_carousel</i> About me
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/aboutme' style={{ color: '#FFF' }} >AboutMe</Link>
                                     </a>
-                                    <div className="dropdown-menu dropdown-with-icons">
-                                        <a href="" className="dropdown-item">
-                                            <i className="material-icons">shopping_cart</i> <Link to='/home/service' style={{ color: '#FFF' }} >Services</Link>
-                                        </a>
-                                        <a href="./examples/about-us.html" className="dropdown-item">
-                                            <i className="material-icons">attach_money</i> Offers
-                                        </a>
-                                        <a href="./examples/blog-post.html" className="dropdown-item">
-                                            <i className="material-icons">warning</i> Claims
-                                        </a>
-
-                                    </div>
                                 </li>
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/sendClaim' style={{ color: '#FFF' }} >SendClaim</Link>
+                                    </a>
+                                </li>
+
 
                                 {/*<li className="nav-item ">*/}
                                     {/*<a className="nav-link">*/}

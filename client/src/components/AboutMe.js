@@ -8,7 +8,7 @@ class AboutMe extends Component {
     render() {
         return (
             <React.Fragment>
-                    <ul className="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center" role="tablist">
+                    <ul className="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center" role="tablist" stylle={{marginTop:'50px'}}>
                         <li className="nav-item">
                             <a className="nav-link" data-toggle="tab" href="#link7" role="tablist" style={{color:'white'}}>
                                 <i className="material-icons">shopping_cart</i> Services
@@ -42,7 +42,7 @@ class AboutMe extends Component {
                         <div className="tab-pane" id="link9">
                                 <div className="row" style={{marginLeft:'950px'}}>
                                     <button className="btn btn-primary btn-round">
-                                        <i className="material-icons">send</i>
+                                        <i className="material-icons">send</i> Send Claim
                                     </button>
                                 </div>
                             <TableClaimFront/>

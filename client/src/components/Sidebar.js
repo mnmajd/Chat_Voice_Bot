@@ -6,12 +6,12 @@ class Sidebar extends Component {
     render() {
         return (
             <React.Fragment>
-                {/*<div className="sidebar" data-color="rose" data-background-color="black"*/}
-                {/*data-image={require('../assets/img/sidebar-1.jpg')}>*/}
+                <div className="sidebar" data-color="rose" data-background-color="black"
+                data-image={require('../assets/img/sidebar-1.jpg')}>
 
-                    <div className="sidebar header-filter" data-color="rose" data-background-color="black" style={{
-                        backgroundImage: `url(${Background})`,
-                    }}>
+                    {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black" style={{*/}
+                        {/*backgroundImage: `url(${Background})`,*/}
+                    {/*}}>*/}
 
                         {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black"*/}
                         {/*style={{backgroundImage: `url(${Background})`}}>*/}
@@ -93,30 +93,24 @@ class Sidebar extends Component {
                                     <p> Offers</p>
                                 </a>
                             </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <p>After Sales Services</p>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <Link to='/admin/claims' style={{ color: '#FFF' }} >
-                                    <p> Claims</p>
-                                    </Link>
-                                </a>
-                            </li>
 
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
                                     <Link to='/admin/after' style={{ color: '#FFF' }} >
-                                        <p> After Sales</p>
+                                    <p> AfterSales</p>
                                     </Link>
                                 </a>
                             </li>
 
+                            <li className="nav-item ">
+                                <a className="nav-link" data-toggle="collapse" href="#">
+                                    <i className="material-icons">image</i>
+                                    <Link to='/admin/claims/table' style={{ color: '#FFF' }} >
+                                    <p> Claims</p>
+                                    </Link>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

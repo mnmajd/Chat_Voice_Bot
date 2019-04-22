@@ -6,10 +6,11 @@ import Header from "./Header";
 import Login from "./Login";
 import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
-import Chat from "./Chat";
-import Claim from "./Claim";
 import Profile from "./Profile";
-
+import Services from "./Services";
+import AboutMe from "./AboutMe";
+import SendClaim from "./ClaimComponent/SendClaim";
+import Chat from "./Chat";
 class Home extends Component {
     render() {
         return (
@@ -28,6 +29,8 @@ class Home extends Component {
                                 <Route path="/home/register"  component={Register}/>
                                 <Route path="/home/profile"  component={Profile}/>
                                 <Route path="/home/service"  component={Services}/>
+                                <Route path="/home/aboutme"  component={AboutMe}/>
+                                <Route path="/home/sendClaim"  component={SendClaim}/>
                                 {/*<Route path="/home"  component={Chat}/>*/}
                             </div>
                             </div>
