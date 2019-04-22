@@ -53,7 +53,7 @@ router.get('/', function(req, res, next) {
 
 
 if(req.body.queryResult.action=="input.welcome"){
-  
+  console.log(req);
     res.json(
         {
             'fulfillmentText': JSON.stringify([

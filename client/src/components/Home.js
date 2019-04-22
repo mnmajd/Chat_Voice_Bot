@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route,Switch} from "react-router-dom";
 
 
 import Header from "./Header";
@@ -13,10 +13,10 @@ import Profile from "./Profile";
 class Home extends Component {
     render() {
         return (
-            <Router>
-                <React.Fragment>
-                    <Route path="*" exact component={Header} />
+
                     <div className="wrapper wrapper-full-page">
+                        <Route path="*" exact component={Header} />
+
                         <div className="page-header register-page header-filter" style={{
                             backgroundImage: `url(${Background})`,
                             backgroundSize: 'cover',
@@ -24,15 +24,14 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-                                <Route path="/home/login"  component={Login}/>
-                                <Route path="/home/register"  component={Register}/>
-                                <Route path="/home/profile"  component={Profile}/>
-                            </div>
+                                    <Route path="/home" exact component={Chat}/>
+                                    <Route path="/home/register" component={Register}/>
+
                             </div>
                         </div>
+                    </div>
 
-                </React.Fragment>
-            </Router>
+
 
         );
     }
