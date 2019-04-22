@@ -24,6 +24,18 @@ var dataDegre = [];
 var dateClaims=[];
 var somme = 0;
 
+
+
+
+exports.getClaimById = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+            responseHandler.resHandler(true, claim, "claim find", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
+
 exports.sendClaim = (req, res, next) => {
     const newclaim = {
         Title: req.body.Title,
@@ -89,6 +101,7 @@ exports.findAllClaimsByTreated = (req, res, next) => {
             claims.forEach(function (claim) {
                 if (claim.State === 'Treated') {
                     dataTreated.push({
+                        Id:claim._id,
                         Title: claim.Title,
                         Content: claim.Content,
                         Type: claim.Type,
@@ -98,6 +111,7 @@ exports.findAllClaimsByTreated = (req, res, next) => {
                 }
                 else {
                     dataNotTreated.push({
+                        Id:claim._id,
                         Title: claim.Title,
                         Content: claim.Content,
                         Type: claim.Type,
@@ -180,19 +194,3 @@ claim.aggregate(aggregatorOpts).exec(
     }
 )
 }
-// exports.getclaimsByMonth = (req, res, next) => {
-//     claim.aggregate(aggregatorOpts).then(
-//         claims => {
-//
-//             // Post.find().sort([['updatedAt', 'descending']]).all(function (posts) {
-//             //     // do something with the array of posts
-//             // });
-//
-//
-//             responseHandler.resHandler(true, claims, "claims detected", res, 200)
-//
-//
-//             // console.log(claims.length)
-//         }
-//     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-// }

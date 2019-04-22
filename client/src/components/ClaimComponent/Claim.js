@@ -9,7 +9,7 @@ class Claim extends Component {
         return (
             <React.Fragment>
                 <Route path="/admin/claims/table" component={TableClaimAdmin}/>
-                <Route path="/admin/claims/details" component={DetailsClaim}/>
+                <Route path="/admin/claims/details/:idClaim" component={DetailsClaim}/>
             </React.Fragment>
         );
     }

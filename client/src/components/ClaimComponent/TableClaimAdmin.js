@@ -49,7 +49,7 @@ class TableClaimAdmin extends Component {
                                                         <i className="material-icons">build</i>
                                                     </button>
                                                     <button type="button" rel="tooltip" className="btn btn-warning btn-link">
-                                                        <Link to='/admin/claims/details' style={{color:'#FF9C09'}} >
+                                                        <Link to={'/admin/claims/details/'+claim.Id} style={{color:'#FF9C09'}} >
                                                             <i className="material-icons">assignment_late</i>
                                                         </Link>
                                                     </button>

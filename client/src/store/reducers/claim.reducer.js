@@ -1,4 +1,4 @@
-const initialState = { Claims: [] ,ClaimAdded: false}
+const initialState = { Claims: [] ,ClaimAdded: false, Claim:{} }
 export function claimreducer(state = initialState, action) {
     switch (action.type) {
         case 'GET_CLAIMS':
@@ -10,6 +10,11 @@ export function claimreducer(state = initialState, action) {
             return {
                 ...state,
                 ClaimAdded : true
+            };
+        case 'GET_CLAIMBYID':
+            return {
+                ...state,
+                Claim : action.payload
             };
 
         default:

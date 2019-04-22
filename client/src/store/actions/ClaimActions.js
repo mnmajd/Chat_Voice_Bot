@@ -15,6 +15,20 @@ export function getAllClaims() {
 }
 
 
+export function getClaimById(idClaim) {
+    return dispatch => {
+        let apiEndpoint = '/claims/getById/'+idClaim;
+        ClaimServices.getClaimById(apiEndpoint)
+            .then((response)=>{
+                if (response) {
+                    console.log(response.data.data)
+                    dispatch(Get_ClaimById(response));
+                }
+            })
+    };
+}
+
+
 export function sendClaim(Title,Content, Type,Degre){
     return dispatch => {
         let apiEndpoint = '/claims';
@@ -46,6 +60,12 @@ function Get_Claims(response){
 function ClaimAdded(res){
     return{
         type: "CLAIM_SUCCESS_ADD"
+    }
+}
+function Get_ClaimById(response){
+    return{
+        type: "GET_CLAIMBYID",
+        payload: response.data.data
     }
 }
 
