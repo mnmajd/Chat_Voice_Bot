@@ -6,10 +6,10 @@ export function getAllClaims() {
         let apiEndpoint = '/claims/allTT';
         ClaimServices.getAllClaims(apiEndpoint)
             .then((response)=>{
-                // if (response) {
-                    console.log('OKKKKKKKKKKK '+response.data)
+                 if (response) {
+                     console.log(response.data.data)
                     dispatch(Get_Claims(response));
-                // }
+                 }
             })
     };
 }
@@ -40,7 +40,7 @@ export function sendClaim(Title,Content, Type,Degre){
 function Get_Claims(response){
     return{
         type: "GET_CLAIMS",
-        payload: response.data
+        payload: response.data.data
     }
 }
 function ClaimAdded(res){

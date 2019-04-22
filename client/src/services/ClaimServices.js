@@ -14,6 +14,7 @@ function sendClaim(apiEndpoint, payload){
 }
 
 function getAllClaims(apiEndpoint){
+    debugger
     return axios.get(config.baseUrl+apiEndpoint).then((response)=>{
         return response;
     }).catch((err)=>{

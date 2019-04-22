@@ -86,8 +86,7 @@ class SendClaim extends Component {
 
 // export default SendClaim;
 const mapStateToProps = (state) => {
-    const {ClaimAdded} = state.ClaimReducer;
-
+    const {ClaimAdded} = state.claimreducer;
     return {
         ClaimAdded
     };
