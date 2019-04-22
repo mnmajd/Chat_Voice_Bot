@@ -45,6 +45,7 @@ exports.sendClaim = (req, res, next) => {
         Date: req.body.Date,
         Treated: req.body.Treated,
         State: req.body.State,
+        // User:req.user._id
          User: '5c878c3fe8bc74164ca40aa5'
     }
     claim.create(newclaim).then(
@@ -76,7 +77,43 @@ exports.treatClaim = (req, res, next) => {
                 claim.Treated = false;
                 claim.State = 'Not Treated';
             }
-            claim.User = req.user._id
+            claim.User = '5c878c3fe8bc74164ca40aa5'
+            claim.save()
+            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
+
+
+exports.treatedClaim = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+                claim.Treated = true;
+                claim.State = 'Treated';
+            claim.User = '5c878c3fe8bc74164ca40aa5'
+            claim.save()
+            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.NotTreatedClaim = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+            claim.Treated = false;
+            claim.State = 'Not Treated';
+            claim.User = '5c878c3fe8bc74164ca40aa5'
+            claim.save()
+            responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.InProgressClaim = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+            claim.Treated = false;
+            claim.State = 'In Progress';
+            claim.User = '5c878c3fe8bc74164ca40aa5'
             claim.save()
             responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
         }
