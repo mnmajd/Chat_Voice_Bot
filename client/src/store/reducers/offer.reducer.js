@@ -4,7 +4,7 @@ export function offersreducer(state = initialState, action) {
         case 'GET_OFFERS':
             return {
                 ...state,
-                Offers : action.payload.data
+                Offers : action.payload
             };
 
         default:

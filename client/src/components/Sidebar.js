@@ -90,7 +90,9 @@ class Sidebar extends Component {
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
+                                    <Link to='/admin/offers' style={{ color: '#FFF' }} >
                                     <p> Offers</p>
+                                    </Link>
                                 </a>
                             </li>
 

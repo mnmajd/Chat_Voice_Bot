@@ -76,7 +76,6 @@ class TableClaimAdmin extends Component {
                                                                 this.state.change='inprogress'
                                                                 ;this.state.idClaim=claim.Id;
                                                                 this.treat();
-                                                                refetch()
                                                             }}
                                                             >
                                                         <i className="material-icons">build</i>
