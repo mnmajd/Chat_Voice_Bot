@@ -3,7 +3,7 @@ import React, {Component} from "react";
 class Register extends Component {
     render() {
         return (
-            <React.Fragment>
+
                 <div className="col-md-10 ml-auto mr-auto">
                     <div className="card card-signup">
                         <h2 className="card-title text-center">Register</h2>
@@ -135,7 +135,6 @@ class Register extends Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
         );
     }
 }
