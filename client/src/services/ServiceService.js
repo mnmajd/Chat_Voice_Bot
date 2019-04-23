@@ -1,13 +1,13 @@
 import axios from 'axios';
 import config from '../config/config';
-export const OfferServices = {
-    getAllOffers,
-    addOffer,
-    getOfferById
+export const ServiceService = {
+    getAllServices,
+    addService,
+    getServiceById
 };
 
 
-function getAllOffers(apiEndpoint){
+function getAllServices(apiEndpoint){
     return axios.get(config.baseUrl+apiEndpoint).then((response)=>{
         return response;
     }).catch((err)=>{
@@ -15,7 +15,7 @@ function getAllOffers(apiEndpoint){
     })
 }
 
-function addOffer(apiEndpoint, payload){
+function addService(apiEndpoint, payload){
     return axios.post(config.baseUrl+apiEndpoint, payload).then((response)=>{
         return response;
     }).catch((err)=>{
@@ -23,7 +23,7 @@ function addOffer(apiEndpoint, payload){
     })
 }
 
-function getOfferById(apiEndpoint){
+function getServiceById(apiEndpoint){
     return axios.get(config.baseUrl+apiEndpoint).then((response)=>{
         return response;
     }).catch((err)=>{

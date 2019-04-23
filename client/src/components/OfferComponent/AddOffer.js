@@ -1,17 +1,17 @@
 import React, {Component} from "react";
-import {connect} from 'react-redux';
-import {sendClaim} from '../../store/actions/ClaimActions';
+import {addOffer} from "../../store/actions/OfferActions";
+import connect from "react-redux/es/connect/connect";
 
-
-class SendClaim extends Component {
-
+class AddOffer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Title: '',
             Content: '',
             Type: '',
-            Degre: ''
+            Duration: '',
+            CodeActivation:'',
+            Price:''
         }
     }
 
@@ -19,24 +19,20 @@ class SendClaim extends Component {
         this.setState({[prop]: event.target.value});
     };
     submit = event => {
-        const {Title, Content, Type, Degre} = this.state;
+        const {Title,Content, Type,Duration,CodeActivation,Price} = this.state;
         const {dispatch} = this.props;
-        dispatch(sendClaim(Title, Content, Type, Degre));
+        dispatch(addOffer(Title,Content, Type,Duration,CodeActivation,Price));
     }
-    redirectToTarget = () => {
-        this.props.history.push(`/home/aboutme`)
-    }
-
     render() {
         return (
             <React.Fragment>
-                <div className="col-md-4  ml-auto mr-auto mb-2" style={{marginTop: '50px'}}>
-                    <div className="card ">
+                <div className="col-md-6">
+                    <div className="card">
                         <div className="card-header card-header-rose card-header-icon">
                             <div className="card-icon">
                                 <i className="material-icons">send</i>
                             </div>
-                            <h4 className="card-title">Send Claim</h4>
+                            <h4 className="card-title">Add Offer</h4>
                         </div>
                         <div className="card-body ">
                             <form className="form" method action>
@@ -44,56 +40,60 @@ class SendClaim extends Component {
                                     <label htmlFor="exampleEmail" className="bmd-label-floating">Title</label>
                                     <input type="text" className="form-control"
                                            value={this.state.Title}
-                                           onChange={this.handleChange('Title')}
-                                    />
+                                           onChange={this.handleChange('Title')}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="examplePass" className="bmd-label-floating">Content</label>
                                     <input type="textarea" className="form-control"
                                            value={this.state.Content}
-                                           onChange={this.handleChange('Content')}
-                                    />
+                                           onChange={this.handleChange('Content')}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="examplePass" className="bmd-label-floating">Type</label>
                                     <input type="text" className="form-control"
                                            value={this.state.Type}
-                                           onChange={this.handleChange('Type')}
-                                    />
+                                           onChange={this.handleChange('Type')}/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="examplePass" className="bmd-label-floating">Degre</label>
+                                    <label htmlFor="examplePass" className="bmd-label-floating">Price</label>
                                     <input type="text" className="form-control"
-                                           value={this.state.Degre}
-                                           onChange={this.handleChange('Degre')}
-                                    />
+                                           value={this.state.Price}
+                                           onChange={this.handleChange('Price')}/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="examplePass" className="bmd-label-floating">Duration</label>
+                                    <input type="text" className="form-control"
+                                           value={this.state.Duration}
+                                           onChange={this.handleChange('Duration')}/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="examplePass" className="bmd-label-floating">Code Activation</label>
+                                    <input type="text" className="form-control"
+                                           value={this.state.CodeActivation}
+                                           onChange={this.handleChange('CodeActivation')}/>
                                 </div>
                                 <div className="card-footer ">
-                                    {/*<button type="submit" className="btn btn-fill btn-rose" onClick={(event)=>{this.submit()}}>Submit</button>*/}
                                     <a className="btn btn-rose btn-link btn-lg"
-                                       onClick={(event) => { this.submit();this.redirectToTarget() }}
-                                    >Submit</a>
-
+                                       onClick={(event) => {
+                                           this.submit()
+                                       }}>Submit</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </React.Fragment>
-
         );
     }
 }
-
-// export default SendClaim;
 const mapStateToProps = (state) => {
-    const {ClaimAdded} = state.claimreducer;
+    const {OfferAdded} = state.offersreducer;
     return {
-        ClaimAdded
+        OfferAdded
     };
 
 }
 export default connect(
     mapStateToProps,
     null
-)(SendClaim);
+)(AddOffer);

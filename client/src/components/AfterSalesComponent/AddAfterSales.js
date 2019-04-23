@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { AddNewAfterSale } from '../store/actions/AfterSalesAction';
+import { AddNewAfterSale } from '../../store/actions/AfterSalesAction';
 import { connect } from 'react-redux';
 
 class AddAfterSales extends Component {
@@ -22,12 +22,9 @@ class AddAfterSales extends Component {
         }
     }
     render() {
-        console.log(" ameni huni"+this.props.Added)
-
         return (
-
             <React.Fragment>
-                {this.props.AfterSalesAddedcap ? 'added' : 'not added'}
+                {/*{this.props.AfterSalesAddedcap ? 'added' : 'not added'}*/}
                 <div className="main-panel">
                     <div className="content">
                         <div className="container-fluid">
@@ -37,7 +34,7 @@ class AddAfterSales extends Component {
                                         <div className="card-icon">
                                             <i className="material-icons">mail_outline</i>
                                         </div>
-                                        <h4 className="card-title">Stacked Form</h4>
+                                        <h4 className="card-title">Add After Service</h4>
                                     </div>
                                     <div className="card-body ">
                                         <form method="#" action="#">

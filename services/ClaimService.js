@@ -98,13 +98,13 @@ exports.treatClaim = (req, res, next) => {
 
 
 exports.followUpClaim = (req, res, next) => {
-    claim.find({User: req.user._id}).then(
+    claim.find({User: '5c878c3fe8bc74164ca40aa5'}).then(
         claims => {
 
-            claims.forEach(function (claim) {
-                data.push({Title: claim.Title, Content: claim.Content, Type: claim.Type, State: claim.State});
-            });
-            responseHandler.resHandler(true, data, "claims detected", res, 200)
+            // claims.forEach(function (claim) {
+            //     data.push({Title: claim.Title, Content: claim.Content, Type: claim.Type, State: claim.State});
+            // });
+            responseHandler.resHandler(true, claims, "claims detected", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }

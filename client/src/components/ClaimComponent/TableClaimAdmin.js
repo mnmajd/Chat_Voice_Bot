@@ -9,19 +9,14 @@ class TableClaimAdmin extends Component {
         const {dispatch } = this.props;
         dispatch(getAllClaims())
     }
-    state = { Claims: null };
-    onClaimFetched = Claims => this.setState(() => ({ Claims }));
     constructor(props) {
         super(props);
         this.state = {
             change:'',
             idClaim:''
-        }
+        };
     }
 
-    // handleChange = prop => event => {
-    //     this.setState({[prop]: event.target.value});
-    // };
 
     treat = event => {
         const {change,idClaim} = this.state;
@@ -36,7 +31,7 @@ class TableClaimAdmin extends Component {
                     <div className="card">
                         <div className="card-header card-header-rose card-header-icon">
                             <div className="card-icon">
-                                <i className="material-icons">assignment</i>
+                                <i className="material-icons">warning</i>
                             </div>
                             <h4 className="card-title">Claims Table</h4>
                         </div>
@@ -65,8 +60,9 @@ class TableClaimAdmin extends Component {
                                                             disabled={claim.State ==='Treated'} style={{cursor: claim.State === 'Treated' ?'not-allowed':''}}
                                                             onClick={(event) => {
                                                                 this.state.change='treated'
-                                                                ;this.state.idClaim=claim.Id;
-                                                                this.treat()
+                                                                ;this.state.idClaim=claim._id;
+                                                                this.treat();
+                                                                this.props.Claims.update(this.props.Claims._id)
                                                             }}>
                                                         <i className="material-icons">done</i>
                                                     </button>
@@ -74,14 +70,13 @@ class TableClaimAdmin extends Component {
                                                             disabled={claim.State ==='In Progress'} style={{cursor: claim.State === 'In Progress' ?'not-allowed':''}}
                                                             onClick={(event) => {
                                                                 this.state.change='inprogress'
-                                                                ;this.state.idClaim=claim.Id;
+                                                                ;this.state.idClaim=claim._id;
                                                                 this.treat();
-                                                            }}
-                                                            >
+                                                            }}>
                                                         <i className="material-icons">build</i>
                                                     </button>
                                                     <button type="button" rel="tooltip" className="btn btn-warning btn-link">
-                                                        <Link to={'/admin/claims/details/'+claim.Id} style={{color:'#FF9C09'}} >
+                                                        <Link to={'/admin/claims/details/'+claim._id} style={{color:'#FF9C09'}} >
                                                             <i className="material-icons">assignment_late</i>
                                                         </Link>
                                                     </button>
