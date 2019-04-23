@@ -18,6 +18,9 @@ class DetailsClaim extends Component {
             idClaim:''
         };
     }
+    redirectToTarget = () => {
+        this.props.history.push(`/admin/claims/table`)
+    }
 
 
     treat = event => {
@@ -53,6 +56,7 @@ class DetailsClaim extends Component {
                                         this.state.change='treated'
                                         ;this.state.idClaim=this.props.Claim._id;
                                         this.treat();
+                                        this.redirectToTarget();
                                     }}>
                                 <i className="material-icons">done</i> Treated
                             </button>
@@ -62,6 +66,7 @@ class DetailsClaim extends Component {
                                         this.state.change='inprogress'
                                         ;this.state.idClaim=this.props.Claim._id;
                                         this.treat();
+                                        this.redirectToTarget();
                                     }}>
 
                                 <i className="material-icons">build</i> In progress

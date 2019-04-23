@@ -9,7 +9,6 @@ export function getAllOffers() {
         OfferServices.getAllOffers(apiEndpoint)
             .then((response)=>{
                 if (response) {
-                    console.log(response.data.data)
                     dispatch(Get_Offers(response));
                 }
             })

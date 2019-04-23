@@ -50,6 +50,12 @@ class Header extends Component {
                                         <i className="material-icons">person</i> <Link to='/home/aboutme' style={{ color: '#FFF' }} >AboutMe</Link>
                                     </a>
                                 </li>
+                                <li className="nav-item ">
+                                    <a className="nav-link">
+                                        <i className="material-icons">person</i> <Link to='/home/map' style={{ color: '#FFF' }} >Map</Link>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
