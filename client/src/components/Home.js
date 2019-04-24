@@ -25,13 +25,13 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
+                                <Route path="/home" exact component={Chat}/>
                                 <Route path="/home/login"  component={Login}/>
                                 <Route path="/home/register"  component={Register}/>
                                 <Route path="/home/profile"  component={Profile}/>
                                 <Route path="/home/service"  component={Services}/>
                                 <Route path="/home/aboutme"  component={AboutMe}/>
                                 <Route path="/home/sendClaim"  component={SendClaim}/>
-                                {/*<Route path="/home"  component={Chat}/>*/}
                             </div>
                             </div>
                         </div>

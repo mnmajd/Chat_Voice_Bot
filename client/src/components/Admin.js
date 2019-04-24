@@ -21,7 +21,7 @@ class Admin extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <Route path="/admin/services" component={Services}/>
-                                    <Route path="/admin/claims" component={Claim}/>
+                                    <Route path="/admin/claims/table" component={Claim}/>
                                     <Route path="/admin/offers" component={TableOfferAdmin}/>
                                     <Route path="/admin/after" component={AfterSales}/>
                                 </div>
