@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { SentimentAnalyzer,SentimentManager } = require('node-nlp');
 const translate = require('@vitalets/google-translate-api');
+var ServiceServices=require('../services/ServicesServices')
+var Request = require("request");
 
 
 var response1=null;
@@ -54,6 +56,9 @@ router.get('/', function(req, res, next) {
 
 if(req.body.queryResult.action=="input.welcome"){
   console.log(req);
+  
+
+  
     res.json(
         {
             'fulfillmentText': JSON.stringify([
@@ -82,16 +87,33 @@ if(req.body.queryResult.action=="input.welcome"){
         }
 
         if(req.body.queryResult.action=="services.global"){
-  
-            res.json(
+            Request.get("http://localhost:3001/services", (error, response, body) => {
+                if(error) {
+                    return console.dir(error);
+                    
+                }
+             dat=JSON.parse(body);
+                data = [];
+
+                dat.data.forEach(function(lol) {
+                 data.push({res:lol.Title})
+                  
+              });
+              res.json(
                 {
-                    'fulfillmentText': JSON.stringify([
+                    'fulfillmentText': JSON.stringify(data)
+                    /*JSON.stringify([
                         {res:"Charge Unit"},
                         {res:"Services Codes"},
                         {res:"Go back to assistance"}
-                    ])
+                    ])*/
                 }
             );
+            });
+
+
+            
+            
             
             }
 
