@@ -6,8 +6,6 @@ import Header from "./Header";
 import Login from "./Login";
 import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
-import Chat from "./Chat";
-import Claim from "./Claim";
 import Profile from "./Profile";
 import Service from "./ServiceComponent/Service";
 import AboutMe from "./AboutMe";
