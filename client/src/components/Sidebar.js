@@ -72,37 +72,76 @@ class Sidebar extends Component {
                                     <ul className="nav">
                                         <li className="nav-item ">
                                             <a className="nav-link" href="">
+                                                <Link to='/admin/services/table' style={{ color: '#FFF' }} >
                                                 <span className="sidebar-mini"> AS </span>
-                                                <Link to='/admin/services' style={{ color: '#FFF' }} >
                                                     <span className="sidebar-normal">All Services</span>
                                                 </Link>
                                             </a>
                                         </li>
                                         <li className="nav-item ">
                                             <a className="nav-link" href="./pages/user.html">
+                                                <Link to='/admin/services/add' style={{ color: '#FFF' }} >
                                                 <span className="sidebar-mini"> AS </span>
                                                 <span className="sidebar-normal"> Add Services  </span>
+                                                </Link>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
+                                <a className="nav-link" data-toggle="collapse" href="#offers">
                                     <i className="material-icons">image</i>
-                                    <Link to='/admin/offers' style={{ color: '#FFF' }} >
-                                    <p> Offers</p>
-                                    </Link>
+                                    <p> Offers <b className="caret"></b>
+                                    </p>
                                 </a>
+                                <div className="collapse" id="offers">
+                                    <ul className="nav">
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="">
+                                                <Link to='/admin/offers/table' style={{ color: '#FFF' }} >
+                                                <span className="sidebar-mini"> AO </span>
+                                                    <span className="sidebar-normal">All Offers</span>
+                                                </Link>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="">
+                                                <Link to='/admin/offers/add' style={{ color: '#FFF' }} >
+                                                <span className="sidebar-mini"> AO </span>
+                                                <span className="sidebar-normal"> Add Offer  </span>
+                                                </Link>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
-
                             <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
+                                <a className="nav-link" data-toggle="collapse" href="#afterSales">
                                     <i className="material-icons">image</i>
-                                    <Link to='/admin/after' style={{ color: '#FFF' }} >
-                                    <p> AfterSales</p>
-                                    </Link>
+                                    <p> AfterSales <b className="caret"></b>
+                                    </p>
                                 </a>
+                                <div className="collapse" id="afterSales">
+                                    <ul className="nav">
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="">
+                                                <Link to='/admin/aftersales/table' style={{ color: '#FFF' }} >
+                                                    <span className="sidebar-mini"> AO </span>
+                                                    <span className="sidebar-normal">All AfterServices</span>
+                                                </Link>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="">
+                                                <Link to='/admin/aftersales/add' style={{ color: '#FFF' }} >
+                                                    <span className="sidebar-mini"> AO </span>
+                                                    <span className="sidebar-normal"> Add AfterSales  </span>
+                                                </Link>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li className="nav-item ">

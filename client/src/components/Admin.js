@@ -5,10 +5,10 @@ import '../assets/img/apple-icon.png';
 import '../assets/img/favicon.png';
 import '../assets/assets-for-demo/demo.css';
 import Sidebar from "./Sidebar";
-import Services from "./Services";
-import AfterSales from "./AfterSales";
+import AfterSales from "./AfterSalesComponent/AfterSales";
 import Claim from "./ClaimComponent/Claim";
-import TableOfferAdmin from "./OfferComponent/TableOfferAdmin";
+import Offer from "./OfferComponent/Offer";
+import Services from "./ServiceComponent/Service";
 
 class Admin extends Component {
     render() {
@@ -21,9 +21,9 @@ class Admin extends Component {
                             <div className="container-fluid">
                                 <div className="row">
                                     <Route path="/admin/services" component={Services}/>
-                                    <Route path="/admin/claims/table" component={Claim}/>
-                                    <Route path="/admin/offers" component={TableOfferAdmin}/>
-                                    <Route path="/admin/after" component={AfterSales}/>
+                                    <Route path="/admin/claims" component={Claim}/>
+                                    <Route path="/admin/offers" component={Offer}/>
+                                    <Route path="/admin/aftersales" component={AfterSales}/>
                                 </div>
                             </div>
                         </div>

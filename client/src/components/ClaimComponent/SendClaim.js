@@ -23,6 +23,9 @@ class SendClaim extends Component {
         const {dispatch} = this.props;
         dispatch(sendClaim(Title, Content, Type, Degre));
     }
+    redirectToTarget = () => {
+        this.props.history.push(`/home/aboutme`)
+    }
 
     render() {
         return (
@@ -61,16 +64,14 @@ class SendClaim extends Component {
                                 <div className="form-group">
                                     <label htmlFor="examplePass" className="bmd-label-floating">Degre</label>
                                     <input type="text" className="form-control"
-                                           value={this.state.Type}
-                                           onChange={this.handleChange('Type')}
+                                           value={this.state.Degre}
+                                           onChange={this.handleChange('Degre')}
                                     />
                                 </div>
                                 <div className="card-footer ">
                                     {/*<button type="submit" className="btn btn-fill btn-rose" onClick={(event)=>{this.submit()}}>Submit</button>*/}
                                     <a className="btn btn-rose btn-link btn-lg"
-                                       onClick={(event) => {
-                                           this.submit()
-                                       }}
+                                       onClick={(event) => { this.submit();this.redirectToTarget() }}
                                     >Submit</a>
 
                                 </div>

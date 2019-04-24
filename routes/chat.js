@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { SentimentAnalyzer,SentimentManager } = require('node-nlp');
 const translate = require('@vitalets/google-translate-api');
+var ServiceServices=require('../services/ServicesServices')
+var Request = require("request");
 
 
 var response1=null;
@@ -54,6 +56,9 @@ router.get('/', function(req, res, next) {
 
 if(req.body.queryResult.action=="input.welcome"){
   console.log(req);
+  
+
+  
     res.json(
         {
             'fulfillmentText': JSON.stringify([
@@ -82,21 +87,40 @@ if(req.body.queryResult.action=="input.welcome"){
         }
 
         if(req.body.queryResult.action=="services.global"){
-  
-            res.json(
+            Request.get("http://localhost:3001/services", (error, response, body) => {
+                if(error) {
+                    return console.dir(error);
+                    
+                }
+             dat=JSON.parse(body);
+                data = [];
+
+                dat.data.forEach(function(lol) {
+                 data.push({res:lol.Title})
+                  
+              });
+              res.json(
                 {
-                    'fulfillmentText': JSON.stringify([
+                    'fulfillmentText': JSON.stringify(data)
+                    /*JSON.stringify([
                         {res:"Charge Unit"},
                         {res:"Services Codes"},
                         {res:"Go back to assistance"}
-                    ])
+                    ])*/
                 }
             );
+            });
+
+
+            
+            
             
             }
 
             if(req.body.queryResult.action=="offers.global"){
   
+             
+
                 res.json(
                     {
                         'fulfillmentText': JSON.stringify([
@@ -123,6 +147,66 @@ if(req.body.queryResult.action=="input.welcome"){
                     );
                     
                     }
+
+                    if(req.body.queryResult.action=="claim.make" && req.body.queryResult.allRequiredParamsPresent==true){
+  
+                        console.log(req.body.queryResult.parameters.title);
+                    
+                        Request.post({
+                            "headers": { "content-type": "application/json" },
+                            "url": "http://localhost:3001/claims",
+                            "body": JSON.stringify({
+                                "Title": req.body.queryResult.parameters.title,
+                                "Content": req.body.queryResult.parameters.content,
+                                "Type": req.body.queryResult.parameters.type,
+                                "Degre": req.body.queryResult.parameters.degre
+        
+                            })
+                        }, (error, response, body) => {
+                            if(error) {
+                                console.log(error);
+                                console.log("not nice");
+                            }
+                            console.log("lol");
+                            res.json(
+                                {
+                                    'fulfillmentText': "Yes baby"
+                                }
+                            );
+                        });
+                    
+              
+                        }
+
+
+                        if(req.body.queryResult.action=="details.claim" && req.body.queryResult.allRequiredParamsPresent==true){
+  
+                            Request.get("http://localhost:3001/claims/getById/"+req.body.queryResult.parameters.claimid, (error, response, body) => {
+                if(error) {
+                    return console.dir(error);
+                    
+                }
+                let state = JSON.parse(response.body);
+              if (state.success==false) {
+                res.json(
+                    {
+                        'fulfillmentText': "Your claim is not found"
+                     
+                    }
+                                );
+              }else{
+                res.json(
+                    {
+                        'fulfillmentText': "Your claim is "+state.data.State
+                     
+                    }
+                                );
+              }
+            });
+
+                        
+                  
+                            }
 
 
                     if(req.body.queryResult.action=="claim.global"){

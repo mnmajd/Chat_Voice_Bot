@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import {Link,Route} from "react-router-dom";
 import {getAllOffers} from "../../store/actions/OfferActions";
 import connect from "react-redux/es/connect/connect";
+import AddOffer from "./AddOffer";
 
 
 class TableOfferAdmin extends Component {
@@ -18,7 +19,7 @@ class TableOfferAdmin extends Component {
                             <div className="card-icon">
                                 <i className="material-icons">assignment</i>
                             </div>
-                            <h4 className="card-title">Claims Table</h4>
+                            <h4 className="card-title">Offers Table</h4>
                         </div>
                         <div className="card-body">
                             <div className="table-responsive">
@@ -42,7 +43,9 @@ class TableOfferAdmin extends Component {
                                                 <td className="text-right">{offer.CodeActivation}</td>
                                                 <td className="td-actions text-right">
                                                     <button type="button" rel="tooltip" className="btn btn-info">
-                                                        <i className="material-icons">person</i>
+                                                        <Link to={'/admin/offers/details/'+offer._id} style={{color:'white'}} >
+                                                        <i className="material-icons">info</i>
+                                                        </Link>
                                                     </button>
                                                     <button type="button" rel="tooltip" className="btn btn-success">
                                                         <i className="material-icons">edit</i>

@@ -1,8 +1,18 @@
 import React, {Component} from "react";
 import Background from '../assets/img/lock.jpg';
 import {Link} from "react-router-dom";
+import {history} from "../helpers";
+import { logout } from '../store/actions/LoginActions';
+import { connect } from 'react-redux';
+
 
 class Header extends Component {
+
+    logout = event =>{
+        const { dispatch } = this.props;
+        dispatch(logout())
+
+    }
     render() {
         return (
             <React.Fragment>
@@ -10,7 +20,7 @@ class Header extends Component {
                      color-on-scroll="500">
                     <div className="container">
                         <div className="navbar-wrapper">
-                            <a className="navbar-brand" href="#pablo">SFM Telecom</a>
+                            <a className="navbar-brand" href="#pablo">Material Dashboard Pro</a>
                         </div>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -28,33 +38,45 @@ class Header extends Component {
                                         <Link to='/home' style={{ color: '#FFF' }} >Home</Link>
                                     </a>
                                 </li>
-                                <li className="nav-item ">
+                                {!localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person_add</i> <Link to='/home/register' style={{ color: '#FFF' }} >Register</Link>
                                     </a>
-                                </li>
-                                <li className="nav-item ">
+                                </li> : ''}
+
+                                {localStorage.getItem('token') ?  <a className="nav-link">
+                                    <i className="material-icons">fingerprint</i> <Link to='/home' onClick={(event) => {
+                                    this.logout()
+                                }} style={{ color: '#FFF' }} >Logout</Link>
+                                </a> : <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">fingerprint</i> <Link to='/home/login' style={{ color: '#FFF' }} >Login</Link>
                                     </a>
-                                </li>
+                                </li>}
 
-                                <li className="nav-item ">
+                                {localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person</i> <Link to='/home/profile' style={{ color: '#FFF' }} >Profile</Link>
                                     </a>
-                                </li>
+                                </li> :'' }
 
-                                <li className="nav-item ">
-                                    <a className="nav-link">
-                                        <i className="material-icons">person</i> <Link to='/home/aboutme' style={{ color: '#FFF' }} >AboutMe</Link>
+                                {localStorage.getItem('token') ?    <li className="dropdown nav-item">
+                                    <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
+                                        <i className="material-icons">view_carousel</i> About me
                                     </a>
-                                </li>
-                                <li className="nav-item ">
-                                    <a className="nav-link">
-                                        <i className="material-icons">person</i> <Link to='/home/sendClaim' style={{ color: '#FFF' }} >SendClaim</Link>
-                                    </a>
-                                </li>
+                                    <div className="dropdown-menu dropdown-with-icons">
+                                        <a href="./examples/about-us.html" className="dropdown-item">
+                                            <i className="material-icons">account_balance</i> Services
+                                        </a>
+                                        <a href="./examples/about-us.html" className="dropdown-item">
+                                            <i className="material-icons">account_balance</i> Offers
+                                        </a>
+                                        <a href="./examples/blog-post.html" className="dropdown-item">
+                                            <i className="material-icons">art_track</i> Claims
+                                        </a>
+
+                                    </div>
+                                </li> : '' }
 
 
                                 {/*<li className="nav-item ">*/}
@@ -74,4 +96,13 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) =>{
+    const { loggedIn } = state.authentication;
+    return {
+        loggedIn
+    };
+}
+export default connect(
+    mapStateToProps,
+    null
+)(Header);

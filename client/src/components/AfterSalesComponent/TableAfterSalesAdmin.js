@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
-import { getAllAfterSales } from '../store/actions/AfterSalesAction';
+import { getAllAfterSales } from '../../store/actions/AfterSalesAction';
 import AddAfterSales from "./AddAfterSales";
 
-class AfterSales extends Component {
+class TableAfterSalesAdmin extends Component {
     componentWillMount() {
         const { dispatch } = this.props;
         dispatch(getAllAfterSales())
@@ -11,10 +11,8 @@ class AfterSales extends Component {
 
 
     render() {
-        // console.log(this.props.AfterSales)
         return (
             <React.Fragment>
-                <AddAfterSales/>
                 <div className="main-panel">
                     <div className="content">
                         <div className="container-fluid">
@@ -86,4 +84,4 @@ const mapStateToProps = (state) =>{
 export default connect(
     mapStateToProps,
     null
-)(AfterSales);
+)(TableAfterSalesAdmin);

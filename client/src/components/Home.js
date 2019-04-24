@@ -6,11 +6,14 @@ import Header from "./Header";
 import Login from "./Login";
 import Background from "../assets/img/lock.jpg";
 import Register from "./Register";
+import Chat from "./Chat";
+import Claim from "./Claim";
 import Profile from "./Profile";
-import Services from "./Services";
+import Service from "./ServiceComponent/Service";
 import AboutMe from "./AboutMe";
 import SendClaim from "./ClaimComponent/SendClaim";
 import Chat from "./Chat";
+ import SimpleMapExample from "./SimpleMapExample";
 class Home extends Component {
     render() {
         return (
@@ -25,14 +28,15 @@ class Home extends Component {
                         }}>
 
                             <div className="container">
-                                <Route path="/home" exact component={Chat}/>
                                 <Route path="/home/login"  component={Login}/>
                                 <Route path="/home/register"  component={Register}/>
                                 <Route path="/home/profile"  component={Profile}/>
-                                <Route path="/home/service"  component={Services}/>
+                                <Route path="/home/service"  component={Service}/>
                                 <Route path="/home/aboutme"  component={AboutMe}/>
                                 <Route path="/home/sendClaim"  component={SendClaim}/>
-                            </div>
+                                <Route path="/home"  exact component={Chat}/>
+                                <Route path="/home/map"  exact component={SimpleMapExample}/>
+                         </div>
                             </div>
                         </div>
 
