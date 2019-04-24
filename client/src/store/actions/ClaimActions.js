@@ -14,6 +14,18 @@ export function getAllClaims() {
     };
 }
 
+export function geolocation() {
+    return dispatch => {
+        let apiEndpoint = '/geolocation';
+        ClaimServices.geolocation(apiEndpoint)
+            .then((response)=>{
+                if (response) {
+                    console.log(response.data)
+                    dispatch(Get_Location(response));
+                }
+            })
+    };
+}
 
 
 
@@ -95,4 +107,9 @@ function Get_ClaimById(response){
     }
 }
 
-
+function Get_Location(response){
+    return{
+        type: "GET_LOCATION",
+        payload: response.data
+    }
+}
