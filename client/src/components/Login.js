@@ -34,7 +34,7 @@ class Login extends Component {
         return (
 
         <React.Fragment>
-            {this.props.loggedIn ? 'loggedin' :
+            {this.props.loggedIn ? history.push('/home') :
                 <div className="col-md-4 col-sm-6 ml-auto mr-auto">
                     <form className="form" method action>
                         <div className="card card-login card-hidden">
@@ -62,7 +62,7 @@ class Login extends Component {
                     </span>
                   </div>
                   <input type="text" className="form-control" placeholder="Username"
-                         value={this.state.username}
+
                          onChange={this.handleChange('username')}
                   />
                 </div>

@@ -5,13 +5,10 @@ var offer = require('../models/OfferSchema');
 var UserSchema = new mongoose.Schema
 (
     {
-            /*FirstName : { type : String , required : true},
+            FirstName : { type : String , required : true},
             LastName  : { type : String , required: true},
-            Email     : { type : String , required : true},
             Adress    : [
                 {
-                    Number : { type : Number , required : true},
-                    Street : { type : String , required : true},
                     City : { type : String , required : true},
                     Country : { type : String , required : true},
                     Postal_code : { type : String , required : true},
@@ -19,12 +16,13 @@ var UserSchema = new mongoose.Schema
                     Latitude : { type : Number , required : false},
 
                 }
-            ],*/
+            ],
 
             Phone    : { type : Number , required : true},
             Email     : { type : String , required : true},
-            CreditAmount     : { type : Number , default:0},
+            CreditAmount     : { type : Number , default:0 ,required:false},
             ActiveOffer :  { type:mongoose.Schema.ObjectId , ref : ' Offer' , required : false}
+
            /* Is_Admin : { type : Boolean , required : false , default: false}*/
 
     }

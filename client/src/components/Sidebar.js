@@ -49,9 +49,12 @@ class Sidebar extends Component {
                         </div>
                         <ul className="nav">
                             <li className="nav-item active ">
-                                <a className="nav-link" href="./dashboard.html">
+                                <a className="nav-link" >
+                                    <Link to='/admin/dash' style={{ color: '#FFF' }}>
                                     <i className="material-icons">dashboard</i>
                                     <p> Dashboard </p>
+                                    </Link>
+
                                 </a>
                             </li>
                             <li className="nav-item ">
@@ -80,18 +83,8 @@ class Sidebar extends Component {
                                     </ul>
                                 </div>
                             </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <p> Offers</p>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
-                                    <p>After Sales Services</p>
-                                </a>
-                            </li>
+
+
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
@@ -104,19 +97,41 @@ class Sidebar extends Component {
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
                                     <i className="material-icons">image</i>
-                                    <Link to='/admin/chat' style={{ color: '#FFF' }} >
-                                        <p> Chat</p>
-                                    </Link>
-                                </a>
-                            </li>
-                            <li className="nav-item ">
-                                <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
                                     <Link to='/admin/after' style={{ color: '#FFF' }} >
                                         <p> After Sales</p>
                                     </Link>
                                 </a>
                             </li>
+
+                            <li className="nav-item ">
+                                <a className="nav-link" data-toggle="collapse" href="#sav">
+                                    <i className="material-icons">image</i>
+                                    <p> Sav
+                                        <b className="caret"></b>
+                                    </p>
+                                </a>
+                                <div className="collapse" id="sav">
+                                    <ul className="nav">
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="">
+                                                <span className="sidebar-mini"> 11111 </span>
+                                                <Link to='/admin/services' style={{ color: '#FFF' }} >
+                                                    <span className="sidebar-normal">All 1111</span>
+                                                </Link>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <a className="nav-link" href="./pages/user.html">
+                                                <span className="sidebar-mini"> 222 </span>
+                                                <span className="sidebar-normal"> Add 222  </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+
 
                         </ul>
                     </div>

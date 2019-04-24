@@ -10,6 +10,7 @@ import Claim from "./Claim";
 import Offers from "./Offers";
 import Chat from "./Chat";
 import AfterSales from "./AfterSales";
+import Dashboard from "./Dashboard";
 
 class Admin extends Component {
     render() {
@@ -21,6 +22,7 @@ class Admin extends Component {
                     <Route path="/admin/claims"   component={Claim} />
                     <Route path="/admin/offers"   component={Offers} />
                     <Route path="/admin/after"   component={AfterSales} />
+                    <Route path="/admin/dash"   component={Dashboard} />
                 </React.Fragment>
             </Router>
         );

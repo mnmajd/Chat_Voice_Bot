@@ -1,8 +1,18 @@
 import React, {Component} from "react";
 import Background from '../assets/img/lock.jpg';
 import {Link} from "react-router-dom";
+import {history} from "../helpers";
+import { logout } from '../store/actions/LoginActions';
+import { connect } from 'react-redux';
+
 
 class Header extends Component {
+
+    logout = event =>{
+        const { dispatch } = this.props;
+        dispatch(logout())
+
+    }
     render() {
         return (
             <React.Fragment>
@@ -28,24 +38,29 @@ class Header extends Component {
                                         <Link to='/home' style={{ color: '#FFF' }} >Home</Link>
                                     </a>
                                 </li>
-                                <li className="nav-item ">
+                                {!localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person_add</i> <Link to='/home/register' style={{ color: '#FFF' }} >Register</Link>
                                     </a>
-                                </li>
-                                <li className="nav-item ">
+                                </li> : ''}
+
+                                {localStorage.getItem('token') ?  <a className="nav-link">
+                                    <i className="material-icons">fingerprint</i> <Link to='/home' onClick={(event) => {
+                                    this.logout()
+                                }} style={{ color: '#FFF' }} >Logout</Link>
+                                </a> : <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">fingerprint</i> <Link to='/home/login' style={{ color: '#FFF' }} >Login</Link>
                                     </a>
-                                </li>
+                                </li>}
 
-                                <li className="nav-item ">
+                                {localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person</i> <Link to='/home/profile' style={{ color: '#FFF' }} >Profile</Link>
                                     </a>
-                                </li>
+                                </li> :'' }
 
-                                <li className="dropdown nav-item">
+                                {localStorage.getItem('token') ?    <li className="dropdown nav-item">
                                     <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
                                         <i className="material-icons">view_carousel</i> About me
                                     </a>
@@ -61,7 +76,8 @@ class Header extends Component {
                                         </a>
 
                                     </div>
-                                </li>
+                                </li> : '' }
+
 
                                 {/*<li className="nav-item ">*/}
                                     {/*<a className="nav-link">*/}
@@ -80,4 +96,13 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) =>{
+    const { loggedIn } = state.authentication;
+    return {
+        loggedIn
+    };
+}
+export default connect(
+    mapStateToProps,
+    null
+)(Header);

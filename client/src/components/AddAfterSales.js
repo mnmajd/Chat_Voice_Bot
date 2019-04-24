@@ -22,7 +22,6 @@ class AddAfterSales extends Component {
         }
     }
     render() {
-        console.log(" ameni huni"+this.props.Added)
 
         return (
 

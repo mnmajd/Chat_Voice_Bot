@@ -14,7 +14,6 @@ class AfterSales extends Component {
         // console.log(this.props.AfterSales)
         return (
             <React.Fragment>
-                <AddAfterSales/>
                 <div className="main-panel">
                     <div className="content">
                         <div className="container-fluid">

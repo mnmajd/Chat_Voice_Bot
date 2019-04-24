@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var jwtDecode = require('jwt-decode');
+
 var User = require('../models/UserSchema')
 var authenticate = require('../config/Authenticate');
 LocalStrategy = require('passport-local').Strategy;
@@ -13,13 +15,9 @@ router.post('/signup', (req, res, next) => {
             Email :req.body.Email,
             Phone :req.body.Phone,
             Adress : {
-                Number :req.body.Number ,
-                Street : req.body.Street,
                 City : req.body.City,
                 Country : req.body.Country,
                 Postal_code : req.body.Postal_code,
-                Longitude : req.body.Longitude,
-                Latitude : req.body.Latitude,
             }
         }),
         req.body.password, (err, user) => {
@@ -51,9 +49,13 @@ router.get('/logout', function(req, res) {
     });
 });
 router.get('/list' , function (req,res) {
-    User.find().then( users => {
-        res.send(users)
-    }).catch(err => res.send(err))
+    // User.find().then( users => {
+    //     res.send(users)
+    // }).catch(err => res.send(err))
+    var token = req.body.token || req.query.token || req.headers['x-access-token'] ||  req.headers['authorization'];
+    var decoded = jwtDecode(token);
+    res.send(decoded._id)
+
 })
 router.get('/list/:id' ,function (req,res) {
     User.findById(req.params.id).then(user=> {
