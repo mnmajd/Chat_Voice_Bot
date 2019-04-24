@@ -24,6 +24,24 @@ var dataDegre = [];
 var dateClaims=[];
 var somme = 0;
 
+
+
+
+exports.getClaimById = (req, res, next) => {
+    claim.findById(req.params.idClaim).then(
+        claim => {
+            responseHandler.resHandler(true, claim, "claim find", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+exports.getAllClaims=(req,res,next)=> {
+    claim.find().then(
+        claims => {
+            responseHandler.resHandler(true, claims, " all claims detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
 exports.sendClaim = (req, res, next) => {
     const newclaim = {
         Title: req.body.Title,
@@ -33,7 +51,8 @@ exports.sendClaim = (req, res, next) => {
         Date: req.body.Date,
         Treated: req.body.Treated,
         State: req.body.State,
-        User: req.user._id
+         //User:req.user._id
+         User: '5cc081c7024b9c6608e26cd7'
     }
     claim.create(newclaim).then(
         claim => {
@@ -54,31 +73,38 @@ exports.sendClaim = (req, res, next) => {
 }
 
 exports.treatClaim = (req, res, next) => {
+    howToChange = req.body.change;
     claim.findById(req.params.idClaim).then(
         claim => {
-            if (claim.Treated === false) {
+            if (howToChange === 'treated') {
                 claim.Treated = true;
                 claim.State = 'Treated';
+            }
+            else if(howToChange === 'inprogress')
+            {
+                claim.Treated = false;
+                claim.State = 'In Progress';
             }
             else {
                 claim.Treated = false;
                 claim.State = 'Not Treated';
             }
-            claim.User = req.user._id
-            claim.save()
+            // claim.User = '5c878c3fe8bc74164ca40aa5'
+             claim.save()
             responseHandler.resHandler(true, claim, "sucessful claim updated", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 
+
 exports.followUpClaim = (req, res, next) => {
-    claim.find({User: req.user._id}).then(
+    claim.find({User: '5c878c3fe8bc74164ca40aa5'}).then(
         claims => {
 
-            claims.forEach(function (claim) {
-                data.push({Title: claim.Title, Content: claim.Content, Type: claim.Type, State: claim.State});
-            });
-            responseHandler.resHandler(true, data, "claims detected", res, 200)
+            // claims.forEach(function (claim) {
+            //     data.push({Title: claim.Title, Content: claim.Content, Type: claim.Type, State: claim.State});
+            // });
+            responseHandler.resHandler(true, claims, "claims detected", res, 200)
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
@@ -89,6 +115,7 @@ exports.findAllClaimsByTreated = (req, res, next) => {
             claims.forEach(function (claim) {
                 if (claim.State === 'Treated') {
                     dataTreated.push({
+                        Id:claim._id,
                         Title: claim.Title,
                         Content: claim.Content,
                         Type: claim.Type,
@@ -98,6 +125,7 @@ exports.findAllClaimsByTreated = (req, res, next) => {
                 }
                 else {
                     dataNotTreated.push({
+                        Id:claim._id,
                         Title: claim.Title,
                         Content: claim.Content,
                         Type: claim.Type,
@@ -180,19 +208,3 @@ claim.aggregate(aggregatorOpts).exec(
     }
 )
 }
-// exports.getclaimsByMonth = (req, res, next) => {
-//     claim.aggregate(aggregatorOpts).then(
-//         claims => {
-//
-//             // Post.find().sort([['updatedAt', 'descending']]).all(function (posts) {
-//             //     // do something with the array of posts
-//             // });
-//
-//
-//             responseHandler.resHandler(true, claims, "claims detected", res, 200)
-//
-//
-//             // console.log(claims.length)
-//         }
-//     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
-// }
