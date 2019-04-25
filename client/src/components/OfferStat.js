@@ -10,7 +10,7 @@ class OfferStat extends Component {
         super(props);
         this.state = {
             options : {
-                series: [10,10],
+                series: [10,10,10,10],
                 labels: []
             }
         }

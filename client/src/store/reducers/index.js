@@ -4,12 +4,15 @@ import {aftersalesreducer} from "./afterSales.reducer";
 import { claimreducer } from './claim.reducer';
 import { offersreducer } from './offer.reducer';
 import { servicesreducer } from './service.reducer';
+import { historyreducer } from './history.reducer';
+
 const rootReducer = combineReducers({
     authentication,
     aftersalesreducer,
     claimreducer,
     offersreducer,
-    servicesreducer
+    servicesreducer,
+    historyreducer
 });
 
 export default rootReducer;

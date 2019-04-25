@@ -25,9 +25,7 @@ class AddAfterSales extends Component {
         return (
             <React.Fragment>
                 {/*{this.props.AfterSalesAddedcap ? 'added' : 'not added'}*/}
-                <div className="main-panel">
-                    <div className="content">
-                        <div className="container-fluid">
+                <div className="col-md-4 col-sm-6 ml-auto mr-auto">
                             <div className="row">
                                 <div className="card ">
                                     <div className="card-header card-header-rose card-header-icon">
@@ -61,8 +59,7 @@ class AddAfterSales extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
             </React.Fragment>
         );
     }

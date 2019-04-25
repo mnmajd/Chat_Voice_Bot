@@ -30,31 +30,32 @@ class Login extends Component {
         }
     }
     render() {
-
+        debugger
         return (
 
-        <React.Fragment>
-            {this.props.loggedIn ? history.push('/home') :
-                <div className="col-md-4 col-sm-6 ml-auto mr-auto">
-                    <form className="form" method action>
-                        <div className="card card-login card-hidden">
-                            <div className="card-header card-header-rose text-center">
-                                <h4 className="card-title">Log in</h4>
-                                <div className="social-line">
-                                    <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
-                                        <i className="fa fa-facebook-square"/>
-                                    </a>
-                                    <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
-                                        <i className="fa fa-twitter"/>
-                                    </a>
-                                    <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
-                                        <i className="fa fa-google-plus"/>
-                                    </a>
+
+            <React.Fragment>
+                {(this.props.loggedIn && localStorage.hasOwnProperty('token') )? '' :
+                    <div className="col-md-4 col-sm-6 ml-auto mr-auto">
+                        <form className="form" method action>
+                            <div className="card card-login card-hidden">
+                                <div className="card-header card-header-rose text-center">
+                                    <h4 className="card-title">Log in</h4>
+                                    <div className="social-line">
+                                        <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
+                                            <i className="fa fa-facebook-square"/>
+                                        </a>
+                                        <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
+                                            <i className="fa fa-twitter"/>
+                                        </a>
+                                        <a href="#pablo" className="btn btn-just-icon btn-link btn-white">
+                                            <i className="fa fa-google-plus"/>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="card-body ">
-                                <p className="card-description text-center">Or Be Classical</p>
-                                <span className="bmd-form-group">
+                                <div className="card-body ">
+                                    <p className="card-description text-center">Or Be Classical</p>
+                                    <span className="bmd-form-group">
                 <div className="input-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -68,7 +69,7 @@ class Login extends Component {
                 </div>
               </span>
 
-                                <span className="bmd-form-group">
+                                    <span className="bmd-form-group">
                 <div className="input-group">
                   <div className="input-group-prepend">
                     <span className="input-group-text">
@@ -81,16 +82,16 @@ class Login extends Component {
                   />
                 </div>
               </span>
+                                </div>
+                                <div className="card-footer justify-content-center">
+                                    <a className="btn btn-rose btn-link btn-lg" onClick={(event) => {
+                                        this.login()
+                                    }}>Lets Go</a>
+                                </div>
                             </div>
-                            <div className="card-footer justify-content-center">
-                                <a className="btn btn-rose btn-link btn-lg" onClick={(event) => {
-                                    this.login()
-                                }}>Lets Go</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            }
+                        </form>
+                    </div>
+                }
             </React.Fragment>
         );
     }

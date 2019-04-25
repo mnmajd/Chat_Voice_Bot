@@ -34,6 +34,7 @@ exports.getClaimById = (req, res, next) => {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+
 exports.getAllClaims=(req,res,next)=> {
     claim.find().then(
         claims => {

@@ -13,10 +13,6 @@ class TableAfterSalesAdmin extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="main-panel">
-                    <div className="content">
-                        <div className="container-fluid">
-                            <div className="row">
                                 <div className="col-md-12">
                                     <div className="card">
                                         <div className="card-header card-header-rose card-header-icon">
@@ -65,11 +61,6 @@ class TableAfterSalesAdmin extends Component {
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </React.Fragment>
         );
     }

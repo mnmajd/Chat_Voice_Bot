@@ -32,8 +32,7 @@ class AddOffer extends Component {
             <React.Fragment>
 
 
-                <div className="col-md-6">
-                    <div className="card">
+                <div className="col-md-4 col-sm-6 ml-auto mr-auto">                    <div className="card">
                         <div className="card-header card-header-rose card-header-icon">
                             <div className="card-icon">
                                 <i className="material-icons">send</i>

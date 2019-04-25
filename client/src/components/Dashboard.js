@@ -9,29 +9,19 @@ class Dashboard extends Component {
     render() {
         return (
             <React.Fragment>
+                <div className="col-md-4 col-sm-6 ml-auto mr-auto">
 
+                 <h3 className="title">SFM Admin Statistic Panel</h3>
+                </div>
+                <div className="row">
 
-                <div className="main-panel">
-                    <div className="header text-center">
-                        <h3 className="title">SFM Admin Statistic Panel</h3>
-                        <p className="category">With this Tab Admin can
-                            <a target="_blank" href="https://gionkunz.github.io/chartist-js/">Have </a>. A global View
-                            <a href="" target="_blank">Of the system</a>
-                        </p>
-                    </div>
-                    <div className="content ">
-
-                        <div className="container-fluid">
-                            <div className="row">
-                               <OfferStat/>
+                                <OfferStat/>
                                 <ClaimStat/>
                                 <SalesStat/>
                                 <UserStat/>
                                 <ServicesStat/>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                            </div>
+
             </React.Fragment>
         );
     }

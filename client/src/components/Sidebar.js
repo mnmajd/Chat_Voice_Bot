@@ -7,30 +7,30 @@ class Sidebar extends Component {
         return (
             <React.Fragment>
                 <div className="sidebar" data-color="rose" data-background-color="black"
-                data-image={require('../assets/img/sidebar-1.jpg')}>
+                     data-image={require('../assets/img/sidebar-1.jpg')}>
 
                     {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black" style={{*/}
-                        {/*backgroundImage: `url(${Background})`,*/}
+                    {/*backgroundImage: `url(${Background})`,*/}
                     {/*}}>*/}
 
-                        {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black"*/}
-                        {/*style={{backgroundImage: `url(${Background})`}}>*/}
-                        <div className="logo">
-                            <a href="" className="simple-text logo-mini">
+                    {/*<div className="sidebar header-filter" data-color="rose" data-background-color="black"*/}
+                    {/*style={{backgroundImage: `url(${Background})`}}>*/}
+                    <div className="logo">
+                        <a href="" className="simple-text logo-mini">
 
-                            </a>
-                            <a href="" className="simple-text logo-normal">
-                                SFM Telecom
-                            </a>
+                        </a>
+                        <a href="" className="simple-text logo-normal">
+                            SFM Telecom
+                        </a>
 
-                        </div>
-                        <div className="sidebar-wrapper">
-                            <div className="user">
-                                <div className="photo">
-                                    <img src={require('../assets/img/faces/avatar.jpg')}/>
-                                </div>
-                                <div className="user-info">
-                                    <a data-toggle="collapse" href="#collapseExample" className="username">
+                    </div>
+                    <div className="sidebar-wrapper">
+                        <div className="user">
+                            <div className="photo">
+                                <img src={require('../assets/img/faces/avatar.jpg')}/>
+                            </div>
+                            <div className="user-info">
+                                <a data-toggle="collapse" href="#collapseExample" className="username">
                                           <span>
                                             Tania Andrew
                                             <b className="caret"></b>
@@ -56,14 +56,17 @@ class Sidebar extends Component {
                         </div>
                         <ul className="nav">
                             <li className="nav-item active ">
-                                <a className="nav-link" href="./dashboard.html">
-                                    <i className="material-icons">dashboard</i>
-                                    <p> Dashboard </p>
+                                <a className="nav-link" >
+                                    <Link to='/admin' style={{ color: '#FFF' }}>
+                                        <i className="material-icons">dashboard</i>
+                                        <p> Dashboard </p>
+                                    </Link>
+
                                 </a>
                             </li>
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#pagesExamples">
-                                    <i className="material-icons">image</i>
+                                    <i className="material-icons">shopping_cart</i>
                                     <p> Services
                                         <b className="caret"></b>
                                     </p>
@@ -73,7 +76,7 @@ class Sidebar extends Component {
                                         <li className="nav-item ">
                                             <a className="nav-link" href="">
                                                 <Link to='/admin/services/table' style={{ color: '#FFF' }} >
-                                                <span className="sidebar-mini"> AS </span>
+                                                    <span className="sidebar-mini"> AS </span>
                                                     <span className="sidebar-normal">All Services</span>
                                                 </Link>
                                             </a>
@@ -81,8 +84,8 @@ class Sidebar extends Component {
                                         <li className="nav-item ">
                                             <a className="nav-link" href="./pages/user.html">
                                                 <Link to='/admin/services/add' style={{ color: '#FFF' }} >
-                                                <span className="sidebar-mini"> AS </span>
-                                                <span className="sidebar-normal"> Add Services  </span>
+                                                    <span className="sidebar-mini"> AS </span>
+                                                    <span className="sidebar-normal"> Add Services  </span>
                                                 </Link>
                                             </a>
                                         </li>
@@ -91,7 +94,7 @@ class Sidebar extends Component {
                             </li>
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#offers">
-                                    <i className="material-icons">image</i>
+                                    <i className="material-icons">local_offer</i>
                                     <p> Offers <b className="caret"></b>
                                     </p>
                                 </a>
@@ -100,7 +103,7 @@ class Sidebar extends Component {
                                         <li className="nav-item ">
                                             <a className="nav-link" href="">
                                                 <Link to='/admin/offers/table' style={{ color: '#FFF' }} >
-                                                <span className="sidebar-mini"> AO </span>
+                                                    <span className="sidebar-mini"> AO </span>
                                                     <span className="sidebar-normal">All Offers</span>
                                                 </Link>
                                             </a>
@@ -108,8 +111,8 @@ class Sidebar extends Component {
                                         <li className="nav-item ">
                                             <a className="nav-link" href="">
                                                 <Link to='/admin/offers/add' style={{ color: '#FFF' }} >
-                                                <span className="sidebar-mini"> AO </span>
-                                                <span className="sidebar-normal"> Add Offer  </span>
+                                                    <span className="sidebar-mini"> AO </span>
+                                                    <span className="sidebar-normal"> Add Offer  </span>
                                                 </Link>
                                             </a>
                                         </li>
@@ -118,7 +121,7 @@ class Sidebar extends Component {
                             </li>
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#afterSales">
-                                    <i className="material-icons">image</i>
+                                    <i className="material-icons">contact_support</i>
                                     <p> AfterSales <b className="caret"></b>
                                     </p>
                                 </a>
@@ -146,9 +149,17 @@ class Sidebar extends Component {
 
                             <li className="nav-item ">
                                 <a className="nav-link" data-toggle="collapse" href="#">
-                                    <i className="material-icons">image</i>
+                                    <i className="material-icons">warning</i>
                                     <Link to='/admin/claims/table' style={{ color: '#FFF' }} >
-                                    <p> Claims</p>
+                                        <p> Claims</p>
+                                    </Link>
+                                </a>
+                            </li>
+                            <li className="nav-item ">
+                                <a className="nav-link" data-toggle="collapse" href="#">
+                                    <i className="material-icons">history</i>
+                                    <Link to='/admin/history' style={{ color: '#FFF' }} >
+                                        <p> Conversation History</p>
                                     </Link>
                                 </a>
                             </li>

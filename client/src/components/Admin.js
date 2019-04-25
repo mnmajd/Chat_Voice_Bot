@@ -12,6 +12,8 @@ import Services from "./ServiceComponent/Service";
 import Provider from "react-redux/es/components/Provider";
 import store from "../store";
 import {history} from "../helpers";
+import History from "./History";
+import Dashboard from "./Dashboard";
 
 class Admin extends Component {
     render() {
@@ -29,6 +31,8 @@ class Admin extends Component {
                                             <Route path="/admin/claims" component={Claim}/>
                                             <Route path="/admin/offers" component={Offer}/>
                                             <Route path="/admin/aftersales" component={AfterSales}/>
+                                            <Route path="/admin/history" component={History}/>
+                                            <Route path="/admin"  exact component={Dashboard}/>
                                         </Switch>
                                     </div>
                                 </div>

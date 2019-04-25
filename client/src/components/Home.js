@@ -12,6 +12,7 @@ import AboutMe from "./AboutMe";
 import SendClaim from "./ClaimComponent/SendClaim";
 import Chat from "./Chat";
  import SimpleMapExample from "./SimpleMapExample";
+import Voice from "./Voice";
 class Home extends Component {
     render() {
         return (
@@ -34,7 +35,7 @@ class Home extends Component {
                                 <Route path="/home/sendClaim"  component={SendClaim}/>
                                 <Route path="/home"  exact component={Chat}/>
                                 <Route path="/home/map"  exact component={SimpleMapExample}/>
-
+                                <Route path="/home/voice"   component={Voice}/>
                             </div>
                             </div>
                         </div>

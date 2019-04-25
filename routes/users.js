@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var jwtDecode = require('jwt-decode');
-
+const ipstack = require('ipstack');
 var User = require('../models/UserSchema')
 var authenticate = require('../config/Authenticate');
 LocalStrategy = require('passport-local').Strategy;
