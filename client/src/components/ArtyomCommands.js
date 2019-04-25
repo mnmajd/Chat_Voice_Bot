@@ -8,41 +8,45 @@ var ch='';
 var ch2='';
 export default class ArtyomCommandsManager {
 
-    getOffers(){
-        const url = 'http://localhost:3001/offers';
-        axios.get(url).then(response => response.data.data)
+
+
+
+    getOffers ()  {
+
+        return axios.get('http://localhost:3001/offers').then(response => response.data.data)
             .then(data => {
                     data.forEach(function (d) {
                         users.push(d.Title)
+                        // console.log(d.Title)
                     })
-                }
-            )
+                    ch+=users.join();
+                    // console.log(ch);
+                    return ch
+                });
     }
 
-    // The ArtyomCommandsManager class expects as argument in the constructor
-    // an already declared instance of Artyom.js
+
     constructor (ArtyomInstance){
         this._artyom = ArtyomInstance;
-        // this.state = {
-        //     users: [],
-        // };
-
-        // for (var i = 0; i < this.state.users.length; i++) {
-        //     console.log("aaaaaa");
-        // }
-
     }
 
-    // Execute the loadCommands method to inject the methods to the instance of Artyom
     loadCommands(){
-
+        //  axios.get('http://localhost:3001/offers').then(response => response.data.data)
+        //     .then(data => {
+        //         data.forEach(function (d) {
+        //             users.push(d.Title)
+        //             // console.log(d.Title)
+        //         })
+        //         ch+=users.join();
+        //          console.log(ch);
+        //         // return ch
+        //     });
 
         let Artyom = this._artyom;
 
-        // Here you can load all the commands that you want to Artyom
         return Artyom.addCommands([
             {
-                indexes: ["Services", "I want Services"],
+                indexes: ["Hello"],
                 action: () => {
                     Artyom.say("which of services internet or communication ?");
                 }
@@ -72,5 +76,7 @@ export default class ArtyomCommandsManager {
                 }
             },
         ]);
+
     }
+
 }

@@ -15,17 +15,23 @@ class AddOffer extends Component {
         }
     }
 
+
+
     handleChange = prop => event => {
         this.setState({[prop]: event.target.value});
     };
+
     submit = event => {
         const {Title,Content, Type,Duration,CodeActivation,Price} = this.state;
         const {dispatch} = this.props;
         dispatch(addOffer(Title,Content, Type,Duration,CodeActivation,Price));
     }
     render() {
+
         return (
             <React.Fragment>
+
+
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-header card-header-rose card-header-icon">
@@ -48,12 +54,8 @@ class AddOffer extends Component {
                                            value={this.state.Content}
                                            onChange={this.handleChange('Content')}/>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="examplePass" className="bmd-label-floating">Type</label>
-                                    <input type="text" className="form-control"
-                                           value={this.state.Type}
-                                           onChange={this.handleChange('Type')}/>
-                                </div>
+
+
                                 <div className="form-group">
                                     <label htmlFor="examplePass" className="bmd-label-floating">Price</label>
                                     <input type="text" className="form-control"
@@ -72,6 +74,23 @@ class AddOffer extends Component {
                                            value={this.state.CodeActivation}
                                            onChange={this.handleChange('CodeActivation')}/>
                                 </div>
+
+
+                                <div className="form-group">
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                        <label htmlFor="examplePass" className="bmd-label-floating">Type</label>
+                                        </div>
+                                        <div className="col-md-8">
+                                        <select className="form-control"data-style="btn select-with-transition"   value={this.state.Type} onChange={this.handleChange('Type')}>
+                                            <option  disabled selected>Single Option</option>
+                                            <option  className="form-control"  value="internet">Internet</option>
+                                            <option className="form-control"   value="communication">Communication</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    </div>
+
                                 <div className="card-footer ">
                                     <a className="btn btn-rose btn-link btn-lg"
                                        onClick={(event) => {
@@ -82,7 +101,10 @@ class AddOffer extends Component {
                         </div>
                     </div>
                 </div>
+
+
             </React.Fragment>
+
         );
     }
 }

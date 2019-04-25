@@ -5,7 +5,7 @@ var OfferSchema = new mongoose.Schema(
         Title :  { type : String , required : true},
         CodeActivation :  { type : String , required : true},
         Price :  { type : Number , required : true},
-        Type :  { type : String , required : true},
+        Type :  { type : String , required : false},
         Duration :  { type : String , required : true},
 
     }

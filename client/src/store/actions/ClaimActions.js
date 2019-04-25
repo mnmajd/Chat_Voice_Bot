@@ -6,17 +6,17 @@ export function getAllClaims() {
         let apiEndpoint = '/claims/all';
         ClaimServices.getAllClaims(apiEndpoint)
             .then((response)=>{
-                 if (response) {
-                     console.log(response.data.data)
+                if (response) {
+                    console.log(response.data.data)
                     dispatch(Get_Claims(response));
-                 }
+                }
             })
     };
 }
 
 export function geolocation() {
     return dispatch => {
-        let apiEndpoint = '/geolocation';
+        let apiEndpoint = '/leaflet';
         ClaimServices.geolocation(apiEndpoint)
             .then((response)=>{
                 if (response) {

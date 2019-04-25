@@ -34,6 +34,7 @@ class Home extends Component {
                                 <Route path="/home/sendClaim"  component={SendClaim}/>
                                 <Route path="/home"  exact component={Chat}/>
                                 <Route path="/home/map"  exact component={SimpleMapExample}/>
+
                             </div>
                             </div>
                         </div>

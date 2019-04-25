@@ -16,7 +16,7 @@ export function getAllServices() {
 }
 
 
-export function addService(Title,Description, Code,Type){
+export function addService(Title,Description, Code,Type,Offer){
     return dispatch => {
         let apiEndpoint = '/services';
         let payload = {
@@ -24,6 +24,7 @@ export function addService(Title,Description, Code,Type){
             Description: Description,
             Code: Code,
             Type: Type,
+            Offer: Offer
         }
         ServiceService.addService(apiEndpoint, payload)
             .then((response)=>{

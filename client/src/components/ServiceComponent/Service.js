@@ -12,7 +12,7 @@ class Offer extends Component {
             <React.Fragment>
                 <Route path="/admin/services/table" component={TableServiceAdmin}/>
                 <Route path="/admin/services/add" component={AddService}/>
-                <Route path="/admin/services/details/:idService" component={DetailsService}/>
+                <Route path="/admin/services/details/:idService/:idOffer" component={DetailsService}/>
             </React.Fragment>
         );
     }
