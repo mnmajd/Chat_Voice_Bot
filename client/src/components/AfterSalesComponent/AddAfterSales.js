@@ -7,7 +7,8 @@ class AddAfterSales extends Component {
         super(props);
         this.state = {
             Title: '',
-            Content : ''
+            Content : '',
+            Type:''
 
         }
     }
@@ -15,10 +16,10 @@ class AddAfterSales extends Component {
         this.setState({ [prop]: event.target.value });
     };
     AddAfterSale = event =>{
-        const { Title, Content } = this.state;
+        const { Title, Content ,Type} = this.state;
         const { dispatch } = this.props;
-        if (Title && Content) {
-            dispatch(AddNewAfterSale(Title, Content))
+        if (Title && Content && Type) {
+            dispatch(AddNewAfterSale(Title, Content , Type))
         }
     }
     render() {
@@ -49,6 +50,21 @@ class AddAfterSales extends Component {
                                                        value={this.state.Content}
                                                        onChange={this.handleChange('Content')}
                                                 />
+                                            </div>
+
+                                            <div className="form-group">
+                                                <div className="row">
+                                                    <div className="col-md-4">
+                                                        <label htmlFor="examplePass" className="bmd-label-floating">Type</label>
+                                                    </div>
+                                                    <div className="col-md-8">
+                                                        <select className="form-control"data-style="btn select-with-transition"   value={this.state.Type} onChange={this.handleChange('Type')}>
+                                                            <option  disabled selected>Single Option</option>
+                                                            <option  className="form-control"  value="Repair">Repair</option>
+                                                            <option className="form-control"   value="Configuration">Configuration</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </form>

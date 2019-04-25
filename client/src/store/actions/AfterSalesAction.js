@@ -16,12 +16,13 @@ export function getAllAfterSales() {
 
 }
 
-export function AddNewAfterSale( Title , Content) {
+export function AddNewAfterSale( Title , Content,Type) {
     return dispatch => {
         let apiEndpoint = '/afterSales';
         let payload = {
             Title: Title,
-            Content: Content
+            Content: Content,
+            Type:Type
         }
         AfterSalesServices.AddNewAfterSale(apiEndpoint , payload)
             .then((response)=>{

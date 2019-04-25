@@ -41,7 +41,7 @@ class TableAfterSalesAdmin extends Component {
                                                             <td>{item.Type}</td>
                                                             <td className="td-actions text-right">
                                                                 <button type="button" rel="tooltip" className="btn btn-info">
-                                                                    <i className="material-icons">person</i>
+                                                                    <i className="material-icons">info</i>
                                                                 </button>
                                                                 <button type="button" rel="tooltip" className="btn btn-success">
                                                                     <i className="material-icons">edit</i>

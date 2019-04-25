@@ -5,7 +5,7 @@ exports.AddAfterSalesService = (req, res, next) => {
     const  newAfterSales  = {
         Title : req.body.Title ,
         Content :  req.body.Content ,
-        Type : 'Repair'
+        Type : req.body.Type
     }
     AfterSales.create(newAfterSales).then(NewAfterSaleService => {
 

@@ -7,7 +7,7 @@ var HistorySchema = new mongoose.Schema(
         ClientMsg :  [{ type : String , required : false}],
         ServerMsg :  [{ type : String , required : false}],
         Date : {type : Date, default:Date.now() },
-        Score:{type : String , required : false,default:""}
+        Score:{type : String , required : false,default:"0"}
 
     }
 )

@@ -49,12 +49,6 @@ class History extends Component {
                                                     rowSpan={1} colSpan={1} style={{width: '102px'}}
                                                     aria-label="Age: activate to sort column ascending">Score
                                                 </th>
-
-                                                <th className="disabled-sorting  sorting" tabIndex={0}
-                                                    aria-controls="datatables" rowSpan={1} colSpan={1}
-                                                    style={{width: '0px'}}
-                                                    aria-label="Actions: activate to sort column ascending">Actions
-                                                </th>
                                             </tr>
                                             </thead>
 
@@ -67,16 +61,9 @@ class History extends Component {
                                                 <td tabIndex={0} className="sorting_1">{history.ClientMsg}</td>
                                                 <td>{history.ServerMsg}</td>
                                                 <td>{history.Date}</td>
-                                                <td className="text-right">{history.Score}</td>
-                                                <td  style={{}}>
-                                                    <a href="#" className="btn btn-link btn-info btn-just-icon like"><i
-                                                        className="material-icons">favorite</i></a>
-                                                    <a href="#" className="btn btn-link btn-warning btn-just-icon edit"><i
-                                                        className="material-icons">dvr</i></a>
-                                                    <a href="#"
-                                                       className="btn btn-link btn-danger btn-just-icon remove"><i
-                                                        className="material-icons">close</i></a>
-                                                </td>
+                                                <td>
+                                                    <img src={require('../assets/img/red.png')}/>
+                                                    </td>
                                             </tr>
 
                                                 </React.Fragment>

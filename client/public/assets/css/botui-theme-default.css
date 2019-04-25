@@ -27,7 +27,7 @@
 }
 
 .botui-message-content.human {
-    color: #f7f8f8;
+    color: white;
     background-color: #919292
 }
 
@@ -57,8 +57,8 @@
     padding: 5px 7px;
     font-family: "Open Sans", sans-serif;
     background-color: transparent;
-    color: #595a5a;
-    border-bottom: 1px solid #919292
+    color: white;
+    border-bottom: 1px solid white
 }
 
 .botui-actions-text-submit {
@@ -131,7 +131,7 @@
     height: .5rem;
     border-radius: .5rem;
     display: inline-block;
-    background-color: #919292
+    background-color: white
 }
 
 .dot:nth-last-child(1) {
