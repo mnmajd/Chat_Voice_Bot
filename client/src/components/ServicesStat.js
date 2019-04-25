@@ -45,9 +45,8 @@ class ServicesStat extends Component {
     render() {
 
         return (
-
             <React.Fragment>
-                <div className="col-md-6">
+                <div className="col-md-6 col-lg-6">
                     <div className="card card-chart">
                         <div className="card-header card-header-icon card-header-danger">
                             <div className="card-icon">
@@ -63,7 +62,6 @@ class ServicesStat extends Component {
                         </div>
                     </div>
                 </div>
-
 
             </React.Fragment>
         );

@@ -36,13 +36,13 @@ class Header extends Component {
                                         <Link to='/home' style={{ color: '#FFF' }} >Home</Link>
                                     </a>
                                 </li>
-                                {!this.props.loggedIn ?  <li className="nav-item ">
+                                {!localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person_add</i> <Link to='/home/register' style={{ color: '#FFF' }} >Register</Link>
                                     </a>
                                 </li> : ''}
 
-                                {this.props.loggedIn ?  <a className="nav-link">
+                                {localStorage.getItem('token') ?  <a className="nav-link">
                                     <i className="material-icons">fingerprint</i> <Link to='/home' onClick={(event) => {
                                     this.logout()
                                 }} style={{ color: '#FFF' }} >Logout</Link>
@@ -52,20 +52,20 @@ class Header extends Component {
                                     </a>
                                 </li>}
 
-                                {this.props.loggedIn ?  <li className="nav-item ">
+                                {localStorage.getItem('token') ?  <li className="nav-item ">
                                     <a className="nav-link">
                                         <i className="material-icons">person</i> <Link to='/home/profile' style={{ color: '#FFF' }} >Profile</Link>
                                     </a>
                                 </li> :'' }
 
 
-                                {this.props.loggedIn ?
+                                {localStorage.getItem('token') ?
                                     <li className="nav-item ">
                                         <a className="nav-link">
                                             <i className="material-icons">person</i> <Link to='/home/aboutme' style={{ color: '#FFF' }} >AboutMe</Link>
                                         </a>
                                     </li>:'' }
-                                {this.props.loggedIn ?
+                                {localStorage.getItem('token') ?
                                     <li className="nav-item ">
                                         <a className="nav-link">
                                             <i className="material-icons">person</i> <Link to='/home/map' style={{ color: '#FFF' }} >Map</Link>
