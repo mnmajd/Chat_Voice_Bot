@@ -49,12 +49,12 @@ router.get('/logout', function(req, res) {
     });
 });
 router.get('/list' , function (req,res) {
-    // User.find().then( users => {
-    //     res.send(users)
-    // }).catch(err => res.send(err))
-    var token = req.body.token || req.query.token || req.headers['x-access-token'] ||  req.headers['authorization'];
-    var decoded = jwtDecode(token);
-    res.send(decoded._id)
+     User.find().then( users => {
+         res.send(users)
+     }).catch(err => res.send(err))
+   // var token = req.body.token || req.query.token || req.headers['x-access-token'] ||  req.headers['authorization'];
+    //var decoded = jwtDecode(token);
+    //res.send(decoded._id)
 
 })
 router.get('/list/:id' ,function (req,res) {
