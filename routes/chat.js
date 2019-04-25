@@ -7,10 +7,13 @@ var Request = require("request");
 
 
 var response1=null;
-
+var n=0;
+var chatid="";
+var ScoreConversation=0;
+var sum=0;
 router.get('/', function(req, res, next) {
     //get ip of client
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    /*var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log(ip);
     var cookie = req.cookies.cookieNames;
     if (cookie === undefined)
@@ -26,17 +29,25 @@ router.get('/', function(req, res, next) {
     {
         // yes, cookie was already present
         console.log('cookie exists', cookie);
-    }
+    }*/
+
     res.render('index.ejs', { title: 'botUI_api.ai' });
     console.log(res);
   });
 
   router.post('/', function(req, res, next) {
+      n=n+1;
+      console.log("n="+n);
     const sentiment = new SentimentManager();
-    sentiment
-        .process('en', req.body.queryResult.queryText)
-        .then(result => console.log(result.score));
-        console.log(JSON.stringify(req.body));
+    sentiment.process('en', req.body.queryResult.queryText).then(result =>
+    {console.log("sentiment="+result.score);
+        sum+=result.score;
+        ScoreConversation=sum/n}
+    );
+       console.log("sum="+sum);
+        console.log("scorefinal="+ScoreConversation);
+
+      console.log(JSON.stringify(req.body));
 
     /*translate(req.body.queryResult.queryText, {to: 'en'}).then(res1 => {
     console.log(res1.from.language.iso);
@@ -51,8 +62,34 @@ router.get('/', function(req, res, next) {
     console.error(err);
 });
 */
+        if(n==1){
+              Request.post({
+                  "headers": { "content-type": "application/json" },
+                  "url": "http://localhost:3001/history",
+              }, (error, response, body) => {
+                  console.log(JSON.parse(response.body).data._id);
+                  chatid=JSON.parse(response.body).data._id
+                  if(error) {
+                      console.log(error);
+                      console.log("not nice");
+                  }
+              });
+        }else{
+            Request.put({
+                "headers": { "content-type": "application/json" },
+                "url": "http://localhost:3001/history/"+chatid+"/addScore",
+                "body": JSON.stringify({
+                    "Score": ScoreConversation
+                })
+            }, (error, response, body) => {
+                if(error) {
+                    console.log(error);
+                    console.log("not nice");
+                }
+            });
+        }
 
-
+    console.log(chatid);
 
 if(req.body.queryResult.action=="input.welcome"){
   console.log(req);
