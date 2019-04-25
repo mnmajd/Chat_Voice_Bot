@@ -7,6 +7,7 @@ var Request = require("request");
 var jwtDecode = require('jwt-decode');
 var User = require('../models/UserSchema');
 var Offer = require('../models/OfferSchema');
+var AfterSales=require('../models/After_SalesSchema');
 
 var UserConnected;
 var response1=null;
@@ -453,7 +454,7 @@ router.get('/', function(req, res, next) {
                               console.log(dat);
                               res.json(
                                 {
-                                    'fulfillmentText': "The service"+dat.data.Title+"<br>"+dat.data.Content
+                                    'fulfillmentText': "The service "+dat.data.Title+"<br>Content: "+dat.data.Content+"<br>Price :"+dat.data.Price+"<br>Activation Code: "+dat.data.CodeActivation
                                 }
                             );
                             });
@@ -465,15 +466,96 @@ router.get('/', function(req, res, next) {
                     res.json(
                         {
                             'fulfillmentText': JSON.stringify([
-                                {res:"Internet Problem"},
-                                {res:"Communication Problem"},
-                                {res:"Other Problem"},
+                                {res:"Repair"},
+                                {res:"Configuration"},
                                 {res:"Go back to assistance"}
                             ])
                         }
                     );
                     
                     }
+
+
+                    if(req.body.queryResult.action=="support.repair"){
+  
+                        console.log(req);
+                    Request.get("http://localhost:3001/afterSales/all/Repair", (error, response, body) => {
+                        if(error) {
+                            return console.dir(error);
+                            
+                        }
+                     dat=JSON.parse(body);
+                        data = [];
+        
+                        dat.data.forEach(function(lol) {
+                         data.push(lol.Title);
+                          
+                      });
+                      
+                      res.json(
+                        {
+                            'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the support')."
+                        }
+                    );
+                    });
+                        
+                        }
+
+                        if(req.body.queryResult.action=="support.configuration"){
+  
+                            console.log(req);
+                        Request.get("http://localhost:3001/afterSales/all/Configuration", (error, response, body) => {
+                            if(error) {
+                                return console.dir(error);
+                                
+                            }
+                         dat=JSON.parse(body);
+                            data = [];
+            
+                            dat.data.forEach(function(lol) {
+                             data.push(lol.Title);
+                              
+                          });
+                          
+                          res.json(
+                            {
+                                'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the support')."
+                            }
+                        );
+                        });
+                            
+                            }
+
+                            if(req.body.queryResult.action=="details.support"){
+  
+                                Request.get("http://localhost:3001/afterSales/byname/"+req.body.queryResult.parameters.support, (error, response, body) => {
+                                    if(error) {
+                                        return console.dir(error);
+                                        
+                                    }
+                                 dat=JSON.parse(body);
+                                    data = [];
+                                    if (dat.data==null) {
+                                        res.json(
+                                            {
+                                                'fulfillmentText': "Please check the name of the support"
+                                            }
+                                        );   
+                                    }else{
+                                        console.log(dat);
+                                        res.json(
+                                          {
+                                              'fulfillmentText': "Support :"+dat.data.Title+"<br>"+dat.data.Content
+                                          }
+                                      );
+                                    }
+                               
+                                
+                                });
+                                       
+                      
+                                }
+    
 
                     if(req.body.queryResult.action=="claim.make" && req.body.queryResult.allRequiredParamsPresent==true){
   
