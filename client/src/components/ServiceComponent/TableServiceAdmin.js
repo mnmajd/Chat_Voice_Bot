@@ -43,7 +43,7 @@ class TableServiceAdmin extends Component {
                                                     <td className="text-right">{service.Description}</td>
                                                     <td className="td-actions text-right">
                                                         <button type="button" rel="tooltip" className="btn btn-info">
-                                                            <Link to={'/admin/services/details/'+service._id} style={{color:'white'}} >
+                                                            <Link to={'/admin/services/details/'+service._id+'/'+service.Offer} style={{color:'white'}} >
                                                                 <i className="material-icons">info</i>
                                                             </Link>
                                                         </button>

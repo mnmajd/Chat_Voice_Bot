@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router';
 import Artyom from 'artyom.js';
 import ArtyomCommandsManager from './ArtyomCommands.js';
+import axios from '../axios';
 const Jarvis = new Artyom();
 class Chat extends Component {
-
     constructor (props, context){
         super(props, context);
 
@@ -18,13 +18,17 @@ class Chat extends Component {
         this.state = {
             artyomActive: false,
             textareaValue: "",
-            artyomIsReading: false
+            artyomIsReading: false,
+            posts:[]
         };
 
         // Load some commands to Artyom using the commands manager
         let CommandsManager = new ArtyomCommandsManager(Jarvis);
         CommandsManager.loadCommands();
     }
+
+
+
     startAssistant() {
         let _this = this;
 
@@ -100,12 +104,6 @@ class Chat extends Component {
                 </div>
             </React.Fragment>*/
             <div>
-                <div>
-                    <br/><br/><br/><br/>
-                    <br/><br/><br/><br/>
-
-                </div>
-
                 <div style={{display:"flex",justifyContent: 'space-around',paddingLeft:"120px",
                     alignContent: "center"}}>
 

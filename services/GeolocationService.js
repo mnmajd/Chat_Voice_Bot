@@ -33,21 +33,21 @@ router.get('/', function (req, res, next) {
         [-27.46778, 153.02778, 'Brisbane'],
         [-31.95306, 115.85889, 'Perth']
     ];
-        const dataSet = Geo.createCompactSet(data);
-        const geoo = new Geo(dataSet, {sorted: true});
-        (async () => {
-            ipv4 = await publicIp.v4();
-            var geo  = geoip.lookup(ipv4);
-            var result = geoo.nearBy(geo.ll[0], geo.ll[1], [0,5000000]);
-            const hashs = result.map( o => o.i );
-            for (i in data){
-                if (data[i][2]==='Manzahhhhhhh'){
-                    final.push({latitude:data[i][0],longitude:data[i][1],name:data[i][2]});
-                }
+    const dataSet = Geo.createCompactSet(data);
+    const geoo = new Geo(dataSet, {sorted: true});
+    (async () => {
+        ipv4 = await publicIp.v4();
+        var geo  = geoip.lookup(ipv4);
+        var result = geoo.nearBy(geo.ll[0], geo.ll[1], [0,5000000]);
+        const hashs = result.map( o => o.i );
+        for (i in data){
+            if (data[i][2]==='Manzahhhhhhh'){
+                final.push({latitude:data[i][0],longitude:data[i][1],name:data[i][2]});
             }
-            console.log(final)
-            res.send(final);
-        })();
+        }
+        console.log(final)
+        res.send(final);
+    })();
 
 
     // });

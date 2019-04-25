@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {addService} from "../../store/actions/ServiceAction";
 import connect from "react-redux/es/connect/connect";
+import {getAllOffers} from "../../store/actions/OfferActions";
 
 
 class AddService extends Component {
@@ -11,17 +12,21 @@ class AddService extends Component {
             Description: '',
             Code: '',
             Type: '',
-            // Offer:'',
+             Offer:'',
         }
+    }
+    componentWillMount() {
+        const {dispatch } = this.props;
+        dispatch(getAllOffers())
     }
 
     handleChange = prop => event => {
         this.setState({[prop]: event.target.value});
     };
     submit = event => {
-        const {Title,Description, Code,Type} = this.state;
+        const {Title,Description, Code,Type,Offer} = this.state;
         const {dispatch} = this.props;
-        dispatch(addService(Title,Description, Code,Type));
+        dispatch(addService(Title,Description, Code,Type,Offer));
     }
     render() {
         return (
@@ -63,12 +68,21 @@ class AddService extends Component {
                                                onChange={this.handleChange('Type')}/>
 
                                     </div>
-                                    {/*<div className="form-group">*/}
-                                        {/*<label htmlFor="examplePass" className="bmd-label-floating">Offer</label>*/}
-                                        {/*<input type="text" className="form-control"*/}
-                                               {/*value={this.state.Offer}*/}
-                                               {/*onChange={this.handleChange('Offer')}/>*/}
-                                    {/*</div>*/}
+                                    <div className="form-group">
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <label htmlFor="examplePass" className="bmd-label-floating">Offer</label>
+                                            </div>
+                                            <div className="col-md-8">
+                                                <select className="form-control"data-style="btn select-with-transition"  value={this.state.Offer} onChange={this.handleChange('Offer')}>
+                                                    <option  disabled selected>Select offer</option>
+                                                    {this.props.Offers.map(offer => (
+                                                    <option  className="form-control"  value={offer._id}>{offer.Title}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="card-footer ">
                                         <a className="btn btn-rose btn-link btn-lg"
                                            onClick={(event) => {
@@ -86,8 +100,10 @@ class AddService extends Component {
 
 const mapStateToProps = (state) => {
     const {ServiceAdded} = state.servicesreducer;
+    const { Offers } = state.offersreducer;
     return {
-        ServiceAdded
+        ServiceAdded,
+        Offers
     };
 
 }
