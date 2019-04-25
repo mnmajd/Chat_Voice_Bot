@@ -66,9 +66,15 @@ exports.expireCard=(req,res,next)=> {
 
 exports.chargeCard=(req,res,next)=> {
     unit.findOne({Code : req.body.cardcode}).exec(function (err, u) {
-        if (u.Expired) {
+        
+         if(u==null){
+            responseHandler.resHandler(false, null, `card not found`, res, 500);  
+        }
+        else if (u.Expired) {
             responseHandler.resHandler(false, null, `Card expired`, res, 500);
-        }else{
+        }
+        
+        else{
             user.findOneAndUpdate({_id : req.body.userid},{$inc: { CreditAmount: u.Amount } }).then(
                 of => {
                     unit.findOneAndUpdate({_id: u.id}, { Expired : 'true' }).exec(function (err, u){

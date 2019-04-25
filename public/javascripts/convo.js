@@ -54,6 +54,7 @@ function IsJsonString(str) {
 function newMessage (response) {
 
       botui.message.add({
+        type:'html',
         content: response,
         delay: 0,
       })

@@ -55,3 +55,11 @@ exports.activateOffer=(req,res,next)=> {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+
+exports.getCreditAmount=(req,res,next)=> {
+    user.findById(req.params.id).then(
+        of => {
+            responseHandler.resHandler(true, of.CreditAmount, "amount activated succeffuly", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}

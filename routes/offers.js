@@ -14,8 +14,11 @@ router.get('/max',OfferServices.getMaxPriceOffer);
 router.get('/getBeneficeByOffer/:offerid/:price',OfferServices.getBeneficeByOffer);
 router.get('/CountUserByOffer/:offerid',OfferServices.CountUserByOffer);
 router.get('/max/:type/:duration',OfferServices.getMaxPriceOfferByPeriodAndType);
-router.get('/all/:type/:duration',OfferServices.getOffersByPeriodAndType);
+router.get('/all/:type',OfferServices.getOffersByPeriodAndType);
+router.get('/byname/:title',OfferServices.getOfferByName);
+
 router.get('/:id',OfferServices.getOfferById);
+
 
 module.exports = router;
 

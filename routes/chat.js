@@ -4,13 +4,17 @@ const { SentimentAnalyzer,SentimentManager } = require('node-nlp');
 const translate = require('@vitalets/google-translate-api');
 var ServiceServices=require('../services/ServicesServices')
 var Request = require("request");
+var jwtDecode = require('jwt-decode');
+var User = require('../models/UserSchema');
+var Offer = require('../models/OfferSchema');
 
-
+var UserConnected;
 var response1=null;
 var n=0;
 var chatid="";
 var ScoreConversation=0;
 var sum=0;
+
 router.get('/', function(req, res, next) {
     //get ip of client
     /*var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -83,6 +87,96 @@ router.get('/', function(req, res, next) {
         );
 
     }
+    if(req.body.queryResult.action=="register.account" && req.body.queryResult.allRequiredParamsPresent==true){
+        Request.post({
+            "headers": { "content-type": "application/json" },
+            "url": "http://localhost:3001/users/signup",
+            "body": JSON.stringify({
+                "username": req.body.queryResult.parameters.username,
+                "password": req.body.queryResult.parameters.password,
+                "FirstName": req.body.queryResult.parameters.firstname,
+                "LastName": req.body.queryResult.parameters.lastname,
+                "Email": req.body.queryResult.parameters.email,
+                "Phone": req.body.queryResult.parameters.phone,
+                "City": req.body.queryResult.parameters.city,
+                "Country": req.body.queryResult.parameters.country
+
+
+
+            })
+        }, (error, response, body) => {
+            if(error) {
+                console.log(error);
+                console.log("not nice");
+            }
+            console.log(response);
+            let state = JSON.parse(response.body);
+              if (state.success==true) {
+                res.json(
+                    {
+                        'fulfillmentText': "You have been registered"
+                     
+                    }
+                                );
+              }else{
+                res.json(
+                    {
+                        'fulfillmentText': "Error"
+                     
+                    }
+                                );
+      
+  
+      }
+    })
+  
+      }
+    if(req.body.queryResult.action=="make.login"){
+        Request.post({
+            "headers": { "content-type": "application/json" },
+            "url": "http://localhost:3001/users/login",
+            "body": JSON.stringify({
+                "username": req.body.queryResult.parameters.username,
+                "password": req.body.queryResult.parameters.password
+                
+
+            })
+        }, (error, response, body) => {
+            if(error) {
+                console.log(error);
+                console.log("not nice");
+            }
+            console.log("lol");
+            if (response.body=="Unauthorized") {
+              res.json(
+                  {
+                      'fulfillmentText': "Error"
+                   
+                  }
+                              );
+            }else{
+                var pre_token = JSON.parse(response.body);
+                var token = pre_token.token;
+                var decoded= jwtDecode(token);
+             userid=decoded._id;
+             User.findById(userid).then(user=>{
+                UserConnected=user;
+
+             })
+
+              res.json(
+                  {
+                      'fulfillmentText': "You are connnected"
+                   
+                  }
+                              );
+      
+  
+      }
+    })
+}
+  
+    
     if(req.body.queryResult.action=="need.assistance"){
   
         res.json(
@@ -99,7 +193,7 @@ router.get('/', function(req, res, next) {
         }
 
         if(req.body.queryResult.action=="services.global"){
-            Request.get("http://localhost:3001/services", (error, response, body) => {
+           /* Request.get("http://localhost:3001/services", (error, response, body) => {
                 if(error) {
                     return console.dir(error);
                     
@@ -111,17 +205,33 @@ router.get('/', function(req, res, next) {
                  data.push({res:lol.Title})
                   
               });
-              res.json(
-                {
-                    'fulfillmentText': JSON.stringify(data)
-                    /*JSON.stringify([
-                        {res:"Charge Unit"},
-                        {res:"Services Codes"},
-                        {res:"Go back to assistance"}
-                    ])*/
-                }
-            );
-            });
+              
+            });*/
+            if (UserConnected === undefined) {
+                res.json(
+                    {
+                        'fulfillmentText': 
+                        JSON.stringify([
+                            {res:"Get Credit Amount"},
+                            {res:"Go back to assistance"}
+                        ])
+                    }
+                );   
+            }else{
+                res.json(
+                    {
+                        'fulfillmentText': 
+                        JSON.stringify([
+                            {res:"Charge Unit"},
+                            {res:"Get Credit Amount"},
+                            {res:"Activate offer"},
+                            {res:"Go back to assistance"}
+                        ])
+                    }
+                );
+            }
+
+           
 
 
             
@@ -132,12 +242,12 @@ router.get('/', function(req, res, next) {
             if(req.body.queryResult.action=="offers.global"){
   
              
-
+               
                 res.json(
                     {
                         'fulfillmentText': JSON.stringify([
-                            {res:"Particular Offers"},
-                            {res:"Entreprise Offers"},
+                            {res:"Communication Offers"},
+                            {res:"Internet Offers"},
                             {res:"Go back to assistance"}
                         ])
                     }
@@ -145,6 +255,211 @@ router.get('/', function(req, res, next) {
                 
                 }
 
+                if(req.body.queryResult.action=="charge.unit" && req.body.queryResult.allRequiredParamsPresent==true){
+                    Request.post({
+                        "headers": { "content-type": "application/json" },
+                        "url": "http://localhost:3001/cards/charge",
+                        "body": JSON.stringify({
+                            "userid": UserConnected._id,
+                            "cardcode": req.body.queryResult.parameters.cardcode
+                            
+            
+            
+            
+                        })
+                    }, (error, response, body) => {
+                        if(error) {
+                            console.log(error);
+                            console.log("not nice");
+                        }
+                        data=JSON.parse(response.body);
+                        if (data.success==true && data.message=="card charged") {
+                            res.json(
+                                {
+                                    'fulfillmentText': "Your unit card has been charged."
+                                }
+                            ); 
+                            
+                        }
+                        else if(data.success==false && data.message=="Card expired"){
+                            res.json(
+                                {
+                                    'fulfillmentText': "This unit card is expired"
+                                }
+                            ); 
+                        }
+                        else{
+                            res.json(
+                                {
+                                    'fulfillmentText': "Unit card not found, please check your code and retry with charging unit card."
+                                }
+                            );  
+                        }
+                        //let state = JSON.parse(response.body);
+                      
+                })
+                }
+
+                if(req.body.queryResult.action=="activate.offer" && req.body.queryResult.allRequiredParamsPresent==true){
+                    Request.get("http://localhost:3001/offers/byname/"+req.body.queryResult.parameters.offer, (error, response, body) => {
+                                if(error) {
+                                    res.json(
+                                        {
+                                            'fulfillmentText': "Please check the name of the offer"
+                                        }
+                                    );
+                                    
+                                }
+                                dat=JSON.parse(body);
+                                if(dat.data==null){
+                                    res.json(
+                                        {
+                                            'fulfillmentText': "Please check the name of the offer"
+                                        }
+                                    ); 
+                                }
+                                else{
+                           Request.put({
+                            "headers": { "content-type": "application/json" },
+                            "url": "http://localhost:3001/services/activateoffer/"+UserConnected._id+"/"+dat.data._id,
+                          
+                        }, (error, response, body) => {
+                            if(error) {
+                                console.log(error);
+                                console.log("not nice");
+                            }
+                            res.json(
+                                {
+                                    'fulfillmentText': "Offer activated succefully"
+                                }
+                            );
+                        });}
+                           
+                        
+                        
+                        });
+             
+                    
+                            
+                        }
+                       
+                
+                  
+                    
+                    
+
+                if(req.body.queryResult.action=="get.credit"){
+
+                    if (UserConnected === undefined) {
+                        res.json(
+                            {
+                                'fulfillmentText': "Please login to consult your Credit"
+                            }
+                        );
+                
+                    }
+                    else{
+
+                   
+                    Request.get("http://localhost:3001/services/credit/"+UserConnected._id, (error, response, body) => {
+                        if(error) {
+                            return console.dir(error);
+                            
+                        }
+                      
+                            res.json(
+                                {
+                                    'fulfillmentText': "Your credit amount is "+ JSON.parse(response.body).data+" DT"
+                                }
+                            ); 
+                     
+                        
+                           
+
+                    
+                    });
+
+                }
+                    
+                    }
+
+
+                if(req.body.queryResult.action=="communication.offers"){
+  
+             console.log(req);
+                    Request.get("http://localhost:3001/offers/all/communication", (error, response, body) => {
+                        if(error) {
+                            return console.dir(error);
+                            
+                        }
+                     dat=JSON.parse(body);
+                        data = [];
+        
+                        dat.data.forEach(function(lol) {
+                         data.push(lol.Title);
+                          
+                      });
+                      
+                      res.json(
+                        {
+                            'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the offer')."
+                        }
+                    );
+                    });
+        
+                    
+                    }
+
+                    if(req.body.queryResult.action=="internet.offers"){
+  
+             
+                        Request.get("http://localhost:3001/offers/all/internet", (error, response, body) => {
+                            if(error) {
+                                return console.dir(error);
+                                
+                            }
+                         dat=JSON.parse(body);
+                            data = [];
+            
+                            dat.data.forEach(function(lol) {
+                             data.push(lol.Title);
+                              
+                          });
+                          
+                          res.json(
+                            {
+                                'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the offer')."
+                            }
+                        );
+                        });
+            
+                        
+                        }
+
+
+
+
+                        if(req.body.queryResult.action=="details.offer"){
+  
+                            Request.get("http://localhost:3001/offers/byname/"+req.body.queryResult.parameters.any, (error, response, body) => {
+                                if(error) {
+                                    return console.dir(error);
+                                    
+                                }
+                             dat=JSON.parse(body);
+                                data = [];
+                
+                           
+                              console.log(dat);
+                              res.json(
+                                {
+                                    'fulfillmentText': "The service"+dat.data.Title+"<br>"+dat.data.Content
+                                }
+                            );
+                            });
+                                   
+                  
+                            }
                 if(req.body.queryResult.action=="support.global"){
   
                     res.json(
@@ -182,7 +497,7 @@ router.get('/', function(req, res, next) {
                             console.log("lol");
                             res.json(
                                 {
-                                    'fulfillmentText': "Yes baby"
+                                    'fulfillmentText': "Claimed"
                                 }
                             );
                         });

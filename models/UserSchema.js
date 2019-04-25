@@ -11,7 +11,7 @@ var UserSchema = new mongoose.Schema
                 {
                     City : { type : String , required : true},
                     Country : { type : String , required : true},
-                    Postal_code : { type : String , required : true},
+                    Postal_code : { type : String , required : false},
                     Longitude : { type : Number , required : false},
                     Latitude : { type : Number , required : false},
 
