@@ -14,13 +14,19 @@ function login(apiEndpoint, payload){
     })
 }
 function register(apiEndpoint, payload){
-    return axios.post(config.baseUrl+apiEndpoint, payload, getOptions()).then((response)=>{
+    return axios.post(config.baseUrl+apiEndpoint, payload).then((response)=>{
         return response;
     }).catch((err)=>{
         console.log(err);
     })
 }
-
+function logout(apiEndpoint){
+    return axios.post(config.baseUrl+apiEndpoint).then((response)=>{
+        return response;
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
 
 function getOptions(){
     let options = {};

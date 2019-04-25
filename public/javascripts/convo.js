@@ -17,11 +17,12 @@ botui.message.add({
 ).then(function (res) {
 
   socket.emit('fromClient', { client : res.value });
- 
+ console.log("houni client")
   // sends the message typed to server
   }).then(function () {
     socket.on('fromServer', function (data) { // recieveing a reply from server.
      console.log(data.server);
+     console.log("houni server")
       if (IsJsonString(data.server)) {
         newMultipleMessage(data.server);
 

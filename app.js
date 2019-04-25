@@ -1,4 +1,3 @@
-var redis = require('redis');
 var createError = require('http-errors');
 var express = require('express');
 var passport = require('passport')
@@ -20,6 +19,9 @@ var cardsRouter = require('./routes/unitcards');
 var AfterSalesRouter = require('./routes/aftersales');
 var chatRouter = require('./routes/chat');
 var geolocationRouter = require('./services/GeolocationService');
+var historyRouter=require('./routes/history');
+
+
 var leafletRouter = require('./services/LeafletService');
 var app = express();
 
@@ -57,7 +59,7 @@ app.use('/cards', cardsRouter);
 app.use('/afterSales',AfterSalesRouter );
 app.use('/geolocation', geolocationRouter);
 app.use('/leaflet', leafletRouter);
-
+app.use('/history', historyRouter);
 
 app.use('/chat', chatRouter);
 app.get('/express_backend', (req, res) => {

@@ -1,60 +1,60 @@
-import {getAllOffers} from "../store/actions/OfferActions";
-import {OfferServices} from "../services/OfferServices";
-
+/**
+ * Created by Emir on 22/04/2019.
+ */
+// ArtyomCommands.js
 import axios from 'axios';
 const API_URL = 'http://localhost:3001';
-var users = [];
-var ch='';
-var ch2='';
+var users=[]
+var ch1="bbb"
+const url = 'http://localhost:3001/offers';
+
 export default class ArtyomCommandsManager {
+    // The ArtyomCommandsManager class expects as argument in the constructor
+    // an already declared instance of Artyom.js
+    constructor (ArtyomInstance,props){
+        this._artyom = ArtyomInstance;
+        this.ch="";
+    }
 
 
 
+    // Execute the loadCommands method to inject the methods to the instance of Artyom
+    loadCommands(){
 
-    getOffers ()  {
-
-        return axios.get('http://localhost:3001/offers').then(response => response.data.data)
+        var enfin= axios.get('http://localhost:3001/offers').then(response => response.data.data)
             .then(data => {
                     data.forEach(function (d) {
                         users.push(d.Title)
-                        // console.log(d.Title)
+                        console.log(d.Title)
                     })
-                    ch+=users.join();
-                    // console.log(ch);
-                    return ch
-                });
-    }
-
-
-    constructor (ArtyomInstance){
-        this._artyom = ArtyomInstance;
-    }
-
-    loadCommands(){
-        //  axios.get('http://localhost:3001/offers').then(response => response.data.data)
-        //     .then(data => {
-        //         data.forEach(function (d) {
-        //             users.push(d.Title)
-        //             // console.log(d.Title)
-        //         })
-        //         ch+=users.join();
-        //          console.log(ch);
-        //         // return ch
-        //     });
-
+                    this.ch+=users.join();
+                    console.log(this.ch);
+                    return users.join();
+                }
+            );
+        console.log(enfin);
+        let internets=""
+        internets= enfin.then(function(value) {
+            console.log(value);
+        });
+        //console.log(Promise.resolve(enfin));
+        //console.log(JSON.stringify(users));
         let Artyom = this._artyom;
 
+        let TypesOfServices="which of services internet or communication ?";
+        let InternetOffers="500 Mega octet internet cost 30 dollar per day, 1 gega octet cost 50 dolar per day, you are welcome";
+        // Here you can load all the commands that you want to Artyom
         return Artyom.addCommands([
             {
-                indexes: ["Hello"],
+                indexes: ["Services", "I want Services"],
                 action: () => {
-                    Artyom.say("which of services internet or communication ?");
+                    Artyom.say(TypesOfServices);
                 }
             },
             {
                 indexes: ["internet"],
                 action: () => {
-                    Artyom.say("500 Mega octet internet cost 30 dollar per day, 1 gega octet cost 50 dolar per day, you are welcome");
+                    Artyom.say(InternetOffers);
                 }
             },
             {
@@ -76,7 +76,5 @@ export default class ArtyomCommandsManager {
                 }
             },
         ]);
-
     }
-
 }
