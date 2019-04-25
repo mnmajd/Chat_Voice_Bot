@@ -42,6 +42,14 @@ exports.getOfferById=(req,res,next)=> {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+
+exports.getOfferByName=(req,res,next)=> {
+    offer.findOne({Title:req.params.title}).then(
+        of => {
+            responseHandler.resHandler(true, of, "offer detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
 exports.getAllOffers=(req,res,next)=> {
     offer.find().then(
         of => {
@@ -57,7 +65,7 @@ exports.getTypesOfOffers=(req,res,next)=> {
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 exports.getOffersByPeriodAndType=(req,res,next)=> {
-    offer.find({Type:req.params.type,Duration:req.params.duration}).then(
+    offer.find({Type:req.params.type}).then(
         offers => {
             responseHandler.resHandler(true, offers, "offers by period detected", res, 200)
         }

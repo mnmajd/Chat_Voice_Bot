@@ -124,8 +124,8 @@ if(req.body.queryResult.action=="input.welcome"){
                 res.json(
                     {
                         'fulfillmentText': JSON.stringify([
-                            {res:"Particular Offers"},
-                            {res:"Entreprise Offers"},
+                            {res:"Communication Offers"},
+                            {res:"Internet Offers"},
                             {res:"Go back to assistance"}
                         ])
                     }
@@ -133,6 +133,83 @@ if(req.body.queryResult.action=="input.welcome"){
                 
                 }
 
+
+                if(req.body.queryResult.action=="communication.offers"){
+  
+             
+                    Request.get("http://localhost:3001/offers/all/communication", (error, response, body) => {
+                        if(error) {
+                            return console.dir(error);
+                            
+                        }
+                     dat=JSON.parse(body);
+                        data = [];
+        
+                        dat.data.forEach(function(lol) {
+                         data.push(lol.Title);
+                          
+                      });
+                      
+                      res.json(
+                        {
+                            'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the offer')."
+                        }
+                    );
+                    });
+        
+                    
+                    }
+
+                    if(req.body.queryResult.action=="internet.offers"){
+  
+             
+                        Request.get("http://localhost:3001/offers/all/internet", (error, response, body) => {
+                            if(error) {
+                                return console.dir(error);
+                                
+                            }
+                         dat=JSON.parse(body);
+                            data = [];
+            
+                            dat.data.forEach(function(lol) {
+                             data.push(lol.Title);
+                              
+                          });
+                          
+                          res.json(
+                            {
+                                'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the offer')."
+                            }
+                        );
+                        });
+            
+                        
+                        }
+
+
+
+
+                        if(req.body.queryResult.action=="details.offer"){
+  
+                            Request.get("http://localhost:3001/offers/byname/"+req.body.queryResult.parameters.any, (error, response, body) => {
+                                if(error) {
+                                    return console.dir(error);
+                                    
+                                }
+                             dat=JSON.parse(body);
+                                data = [];
+                
+                           
+                              console.log(dat);
+                              res.json(
+                                {
+                                    'fulfillmentText': "The service"+dat.data.Title+"<br>"+dat.data.Content
+                                }
+                            );
+                            });
+                                   
+                  
+                            }
                 if(req.body.queryResult.action=="support.global"){
   
                     res.json(
