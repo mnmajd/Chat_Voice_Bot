@@ -6,8 +6,14 @@ import connect from "react-redux/es/connect/connect";
 class History extends Component {
 
     componentWillMount() {
+        const hasSubmit = false;
+
+        this.setState({
+            hasSubmit: hasSubmit
+        });
         const {dispatch } = this.props;
         dispatch(getHistory())
+
     }
     render() {
         return (
@@ -17,7 +23,7 @@ class History extends Component {
                         <div className="card-icon">
                             <i className="material-icons">assignment</i>
                         </div>
-                        <h4 className="card-title">DataTables.net</h4>
+                        <h4 className="card-title">History</h4>
                     </div>
                     <div className="card-body">
                         <div className="toolbar">
@@ -38,16 +44,12 @@ class History extends Component {
                                                     aria-label="Name: activate to sort column descending">Msg Client
                                                 </th>
                                                 <th className="sorting" tabIndex={0} aria-controls="datatables"
-                                                    rowSpan={1} colSpan={1} style={{width: '115px'}}
-                                                    aria-label="Position: activate to sort column ascending">Msg Server
-                                                </th>
-                                                <th className="sorting" tabIndex={0} aria-controls="datatables"
                                                     rowSpan={1} colSpan={1} style={{width: '114px'}}
                                                     aria-label="Office: activate to sort column ascending">Date
                                                 </th>
                                                 <th className="sorting" tabIndex={0} aria-controls="datatables"
                                                     rowSpan={1} colSpan={1} style={{width: '102px'}}
-                                                    aria-label="Age: activate to sort column ascending">Score
+                                                    aria-label="Age: activate to sort column ascending">Satisfaction Client
                                                 </th>
                                             </tr>
                                             </thead>
@@ -58,12 +60,15 @@ class History extends Component {
                                             {this.props.History.map(history => (
                                                 <React.Fragment>
                                             <tr role="row" className="odd">
-                                                <td tabIndex={0} className="sorting_1">{history.ClientMsg}</td>
-                                                <td>{history.ServerMsg}</td>
+                                                <td tabIndex={0} className="sorting_1">{history.ClientMsg[0]}({history.ClientMsg.length})</td>
                                                 <td>{history.Date}</td>
                                                 <td>
-                                                    <img src={require('../assets/img/red.png')}/>
-                                                    </td>
+
+                                                    {history.Score <0 ?<img src={require('../assets/img/red.png')}/>: null }
+                                                    {history.Score > 0 ?<img src={require('../assets/img/green.png')}/>: null }
+                                                    {history.Score == 0 ?<img width="23px" height="23px" src={require('../assets/img/yellow.png')}/>: null }
+
+                                                </td>
                                             </tr>
 
                                                 </React.Fragment>
