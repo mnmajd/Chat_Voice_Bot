@@ -6,5 +6,8 @@ router.post('/', AfterSalesService.AddAfterSalesService);
 router.get('/', AfterSalesService.GetAfterSalesService);
 router.get('/:id', AfterSalesService.GetAfterSalesServiceById);
 router.put('/:title',AfterSalesService.updateaftersales);
-router.put('/stat',AfterSalesService.getAfterSalesByType);
+router.get('/all/:type',AfterSalesService.getAfterSalesbyType);
+router.get('/byname/:title',AfterSalesService.getSavByName);
+
+
 module.exports = router;

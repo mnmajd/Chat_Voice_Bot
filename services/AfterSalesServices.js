@@ -5,7 +5,7 @@ exports.AddAfterSalesService = (req, res, next) => {
     const  newAfterSales  = {
         Title : req.body.Title ,
         Content :  req.body.Content ,
-        Type : 'Repair'
+        Type : 'Configuration'
     }
     AfterSales.create(newAfterSales).then(NewAfterSaleService => {
 
@@ -46,16 +46,20 @@ exports.updateaftersales=(req,res,next)=> {
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
 
-exports.getAfterSalesByType = (req, res, next) => {
-    AfterSales.aggregate(
-        [
-            {
-                $group : {
-                    _id : { Type: { $Type: "$Type" }},
-                }
-            }
-        ]
-    ).then( afterS => {
-        responseHandler.resHandler(true, afterS, "sucessful after sales updated", res, 200)
-    })
+
+exports.getAfterSalesbyType=(req,res,next)=> {
+    AfterSales.find({Type:req.params.type}).then(
+        offers => {
+            responseHandler.resHandler(true, offers, "sav detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+}
+
+
+exports.getSavByName=(req,res,next)=> {
+    AfterSales.findOne({Title:req.params.title}).then(
+        of => {
+            responseHandler.resHandler(true, of, "sav detected", res, 200)
+        }
+    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
