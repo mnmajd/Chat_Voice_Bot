@@ -83,7 +83,7 @@ class SalesStat extends Component {
         return (
 
             <React.Fragment>
-                <div className="col-md-6">
+                <div className="col-md-6 col-lg-6">
                     <div className="card card-chart">
                         <div className="card-header card-header-icon card-header-danger">
                             <div className="card-icon">
@@ -92,7 +92,7 @@ class SalesStat extends Component {
                             <h4 className="card-title">Statics of users</h4>
                         </div>
                         <div className="card-body">
-                            <Chart options={this.state.options} series={this.state.series} type="bar" width={350} height={320} />
+                            <Chart options={this.state.options} series={this.state.series} type="bar" width={400} height={320} />
                         </div>
                         <div className="card-footer">
 

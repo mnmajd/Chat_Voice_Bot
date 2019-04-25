@@ -12,8 +12,8 @@ export function login(username, password){
         userService.login(apiEndpoint, payload)
             .then((response)=>{
                 if (response) {
-                    localStorage.setItem('token', response.token);
-                    console.log(response.token)
+                    debugger
+                    localStorage.setItem('token', response.data.token);
                     dispatch(setUserDetails(response));
                     history.push('/home');
                 }
@@ -38,6 +38,7 @@ export function register(username,password,firstname,lastname,Email,Phone,City,C
             .then((response)=>{
                 console.log('this is register'+payload)
                 if (response) {
+
                     dispatch(setUserRegistered());
                     history.push('/home');
                 }
@@ -57,7 +58,7 @@ export function logout(){
 function setUserDetails(user){
     return{
         type: "LOGIN_SUCCESS",
-        payload: { token: user.token}
+        payload: { token: user.data.token}
     }
 }
 
