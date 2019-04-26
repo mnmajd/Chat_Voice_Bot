@@ -47,12 +47,6 @@ class TableOfferAdmin extends Component {
                                                         <i className="material-icons">info</i>
                                                         </Link>
                                                     </button>
-                                                    <button type="button" rel="tooltip" className="btn btn-success">
-                                                        <i className="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" className="btn btn-danger">
-                                                        <i className="material-icons">close</i>
-                                                    </button>
                                                 </td>
                                             </tr>
                                         </React.Fragment>

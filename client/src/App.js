@@ -7,6 +7,8 @@ import {Route,Router ,Switch,BrowserRouter} from 'react-router-dom'
 import store from './store';
 import { history } from './helpers';
 import Home from "./components/Home";
+import History from "./components/History";
+
 import {PrivateRoute} from "./components/PrivateRoute";
 
 
@@ -20,6 +22,8 @@ class App extends Component{
                         <Switch>
                             <Route exact path='/admin' component={Admin}/>
                             <Route path="/home" exact component={Home}/>
+                            <Route path="/admin/history" component={History}/>
+
                         </Switch>
                     </React.Fragment>
                 </Router>

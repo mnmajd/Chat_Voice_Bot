@@ -388,7 +388,7 @@ router.get('/', function(req, res, next) {
                 if(req.body.queryResult.action=="communication.offers"){
   
              console.log(req);
-                    Request.get("http://localhost:3001/offers/all/communication", (error, response, body) => {
+                    Request.get("http://localhost:3001/offers/all/Appel", (error, response, body) => {
                         if(error) {
                             return console.dir(error);
                             
@@ -414,7 +414,7 @@ router.get('/', function(req, res, next) {
                     if(req.body.queryResult.action=="internet.offers"){
   
              
-                        Request.get("http://localhost:3001/offers/all/internet", (error, response, body) => {
+                        Request.get("http://localhost:3001/offers/all/Internet", (error, response, body) => {
                             if(error) {
                                 return console.dir(error);
                                 
@@ -429,7 +429,7 @@ router.get('/', function(req, res, next) {
                           
                           res.json(
                             {
-                                'fulfillmentText': data.join()+"<br> Please write (I want details about 'the name of the offer')."
+                                'fulfillmentText': data.join()+"<br> <br>Please write (I want details about 'the name of the offer')."
                             }
                         );
                         });
@@ -452,11 +452,20 @@ router.get('/', function(req, res, next) {
                 
                            
                               console.log(dat);
-                              res.json(
-                                {
-                                    'fulfillmentText': "The service "+dat.data.Title+"<br>Content: "+dat.data.Content+"<br>Price :"+dat.data.Price+"<br>Activation Code: "+dat.data.CodeActivation
-                                }
-                            );
+                              if(dat.data == null){
+                                  res.json(
+                                      {
+                                          'fulfillmentText': "Please Try again Offer not detected"
+                                      }
+                                  );
+                              }else{
+                                  res.json(
+                                      {
+                                          'fulfillmentText': "The service "+dat.data.Title+"<br>Content: "+dat.data.Content+"<br>Price :"+dat.data.Price+"<br>Activation Code: "+dat.data.CodeActivation
+                                      }
+                                  );
+                              }
+
                             });
                                    
                   
