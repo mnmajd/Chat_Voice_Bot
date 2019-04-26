@@ -40,21 +40,33 @@ export default class ArtyomCommandsManager {
         //console.log(Promise.resolve(enfin));
         //console.log(JSON.stringify(users));
         let Artyom = this._artyom;
-
         let TypesOfServices="which of services internet or communication ?";
         let InternetOffers="500 Mega octet internet cost 30 dollar per day, 1 gega octet cost 50 dolar per day, you are welcome";
+        let communicationOffers="24 hour cost 50 dollar ,1 hour cost 10 dollar, you are welcome";
         // Here you can load all the commands that you want to Artyom
         return Artyom.addCommands([
             {
-                indexes: ["Services", "I want Services"],
+                indexes: ["Offers", "I want Offers"],
                 action: () => {
                     Artyom.say(TypesOfServices);
                 }
             },
             {
-                indexes: ["internet"],
+                indexes: ["internet","i want internet offers"],
                 action: () => {
                     Artyom.say(InternetOffers);
+                }
+            },
+            {
+                indexes: ["communication","i want communication offers"],
+                action: () => {
+                    Artyom.say(communicationOffers);
+                }
+            },
+            {
+                indexes: ["what is your name","name"],
+                action: () => {
+                    Artyom.say("I am SFM boot nice to meet you");
                 }
             },
             {
