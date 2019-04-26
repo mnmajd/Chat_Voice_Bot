@@ -7,6 +7,8 @@ var HistoryService=require('../services/HistoryService');
 router.post('/', HistoryService.submithistory);
 router.put('/:id/addMsg', HistoryService.AddMsgs);
 router.put('/:id/addScore', HistoryService.AddScore);
+router.get('/ScoreStat', HistoryService.getScoreConversation);
+router.get('/ScoreTime', HistoryService.getScoreConversationByTime);
 router.get('/', HistoryService.getHistory);
 
 

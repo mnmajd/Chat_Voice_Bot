@@ -82,7 +82,7 @@ class AddOffer extends Component {
                                         </div>
                                         <div className="col-md-8">
                                         <select className="form-control"data-style="btn select-with-transition"   value={this.state.Type} onChange={this.handleChange('Type')}>
-                                            <option  disabled selected>Single Option</option>
+                                            <option  className="form-control"  value="">Select Type</option>
                                             <option  className="form-control"  value="internet">Internet</option>
                                             <option className="form-control"   value="communication">Communication</option>
                                         </select>

@@ -25,35 +25,7 @@ class Sidebar extends Component {
 
                     </div>
                     <div className="sidebar-wrapper">
-                        <div className="user">
-                            <div className="photo">
-                                <img src={require('../assets/img/faces/avatar.jpg')}/>
-                            </div>
-                            <div className="user-info">
-                                <a data-toggle="collapse" href="#collapseExample" className="username">
-                                          <span>
-                                            Tania Andrew
-                                            <b className="caret"></b>
-                                          </span>
-                                </a>
-                                <div className="collapse" id="collapseExample">
-                                    <ul className="nav">
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#">
-                                                <span className="sidebar-mini"> MP </span>
-                                                <span className="sidebar-normal"> My Profile </span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#">
-                                                <span className="sidebar-mini"> EP </span>
-                                                <span className="sidebar-normal"> Edit Profile </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                         <ul className="nav">
                             <li className="nav-item active ">
                                 <a className="nav-link" >

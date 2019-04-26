@@ -12,7 +12,7 @@ router.get('/',OfferServices.getAllOffers);
 router.get('/types',OfferServices.getTypesOfOffers);
 router.get('/max',OfferServices.getMaxPriceOffer);
 router.get('/getBeneficeByOffer/:offerid/:price',OfferServices.getBeneficeByOffer);
-router.get('/CountUserByOffer/:offerid',OfferServices.CountUserByOffer);
+router.get('/CountUserByOffer',OfferServices.CountUserByOffer);
 router.get('/max/:type/:duration',OfferServices.getMaxPriceOfferByPeriodAndType);
 router.get('/all/:type',OfferServices.getOffersByPeriodAndType);
 router.get('/byname/:title',OfferServices.getOfferByName);

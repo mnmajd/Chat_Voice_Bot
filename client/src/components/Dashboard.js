@@ -15,12 +15,11 @@ class Dashboard extends Component {
                 </div>
                 <div className="row">
 
-                                <OfferStat/>
-                                <ClaimStat/>
-                                <SalesStat/>
-                                <UserStat/>
-                                <ServicesStat/>
-                            </div>
+
+                    <UserStat/>
+                    <OfferStat/>
+
+                </div>
 
             </React.Fragment>
         );

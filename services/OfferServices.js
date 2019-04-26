@@ -94,13 +94,59 @@ exports.getBeneficeByOffer=(req,res,next)=> {
         }
     ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
 }
+listoffers=[];
+a=[];
 exports.CountUserByOffer=(req,res,next)=> {
 
-    user.count({ActiveOffer:req.params.offerid}).then(
-        nb => {
-            console.log(nb)
-            responseHandler.resHandler(true,  nb, "max detected", res, 200)
-        }
-    ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+    function demoPromise() {
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+                p.then(() => {
+                    console.log("I execute second");
+                    listoffers.map(offer=>
+                        user.count({ActiveOffer:offer.id}).then(
+                            nb => {
+                                a.push({"nb":nb,"name":offer.Title});
+                            }))
+
+                }); // because I will be scheduled second
+            }, 10);
+        });
+        responseHandler.resHandler(true, a, " all offers detected", res, 200)
+
+        return p;
+    }
+    demoPromise().then(() => {
+        console.log("I execute first");
+        offer.find().exec(function (err, todo) {
+            listoffers=todo;
+
+        });
+
+
+    });
 }
 
+
+/*
+exports.CountUserByOffer=async function executeAsyncTask () {
+    const valueA = await functionA()
+    const valueB = await functionB(valueA)
+    return function3(valueA, valueB)
+}
+/*
+ offer.find().then(
+ offers => {
+ offers.map(of=>
+ user.count({ActiveOffer:of.id}).then(
+ nb => {
+ a.push({"nb":nb,"name":of.Title});
+ }
+ ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+ //a.push({"nb":of.Title,"id":of.id})
+ )
+ responseHandler.resHandler(true, a, " all offers detected", res, 200)
+ }
+ ).catch(error => responseHandler.resHandler(false, null, `error : ${error}`, res, 500))
+ */
