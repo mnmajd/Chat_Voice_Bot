@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 const { SentimentAnalyzer,SentimentManager } = require('node-nlp');
-const translate = require('@vitalets/google-translate-api');
 var ServiceServices=require('../services/ServicesServices')
 var Request = require("request");
 var jwtDecode = require('jwt-decode');
 var User = require('../models/UserSchema');
 var Offer = require('../models/OfferSchema');
 var AfterSales=require('../models/After_SalesSchema');
+const translate = require('@vitalets/google-translate-api');
 
+const projectId = 'chatbot-239821';
 var UserConnected;
 var response1=null;
 var n=0;
@@ -687,19 +688,48 @@ router.get('/', function(req, res, next) {
 
 
   router.post('/translate', (req, res) => {
-    var q = req.body.q;
-    console.log(q);
-  var options = { method: 'POST',
-  url: 'https://translation.googleapis.com/language/translate/v2',
-  form: 
-   { key: process.env.TRANSLATE,
-     q: q,
-     target: 'en' } };
-    request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    console.log(body);
-    res.send(body);
-    });
+      var currentLanguage ='' ;
+       let text = req.body.test
+      let text2 = 'hi our services are'
+      let promise  =  new Promise(function (resolve, reject) {
+          translate(text).then(value => {
+              currentLanguage = value.from.language.iso
+              console.log(currentLanguage)
+              resolve({
+                  language: currentLanguage
+              });
+          }).catch(err => {
+              console.error(err);
+          });
+      })
+      promise.then(function (value) {
+          console.log(JSON.stringify(value))
+      })
+      promise.catch(function (reason) {
+          console.log("Problem with make!!! ", reason);
+      })
+      promise.finally(function () {
+          translate(text2, {to: currentLanguage}).then(value2 => {
+              console.log(value2.text);
+          }).catch(err => {
+              console.error(err);
+          });
+      })
+
+
+  //   var q = req.body.q;
+  //   console.log(q);
+  // var options = { method: 'POST',
+  // url: 'https://translation.googleapis.com/language/translate/v2',
+  // form:
+  //  { key: process.env.TRANSLATE,
+  //    q: q,
+  //    target: 'en' } };
+  //   request(options, function (error, response, body) {
+  //   if (error) throw new Error(error);
+  //   console.log(body);
+  //   res.send(body);
+  //   });
 })
 
 module.exports = router;

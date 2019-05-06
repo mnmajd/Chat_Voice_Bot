@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@google-cloud/translate": "^3.0.1",
     "@vitalets/google-translate-api": "^2.8.0",
     "actions-on-google": "^2.2.0",
     "apexcharts": "^3.6.7",
@@ -25,6 +26,7 @@
     "geo-nearby": "^2.0.1",
     "geo-proximity": "^2.3.2",
     "geoip-lite": "^1.3.7",
+    "google-translate-api": "^2.3.0",
     "http-errors": "~1.6.2",
     "iplocation": "^6.1.0",
     "ipstack": "^0.1.1",
